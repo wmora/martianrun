@@ -10,8 +10,4 @@ public class CityEscape extends Game {
         setScreen(new GameScreen());
     }
 
-    @Override
-    public void render() {
-
-    }
 }
