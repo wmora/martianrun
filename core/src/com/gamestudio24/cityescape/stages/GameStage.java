@@ -1,10 +1,11 @@
 package com.gamestudio24.cityescape.stages;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.gamestudio24.cityescape.actors.Ground;
+import com.gamestudio24.cityescape.actors.Runner;
 import com.gamestudio24.cityescape.utils.WorldUtils;
 
 public class GameStage extends Stage {
@@ -14,8 +15,8 @@ public class GameStage extends Stage {
     private static final int VIEWPORT_HEIGHT = 13;
 
     private World world;
-    private Body ground;
-    private Body runner;
+    private Ground ground;
+    private Runner runner;
 
     private final float TIME_STEP = 1 / 300f;
     private float accumulator = 0f;
@@ -24,11 +25,25 @@ public class GameStage extends Stage {
     private Box2DDebugRenderer renderer;
 
     public GameStage() {
-        world = WorldUtils.createWorld();
-        ground = WorldUtils.createGround(world);
-        runner = WorldUtils.createRunner(world);
-        renderer = new Box2DDebugRenderer();
+        setUpWorld();
         setupCamera();
+        renderer = new Box2DDebugRenderer();
+    }
+
+    private void setUpWorld() {
+        world = WorldUtils.createWorld();
+        setUpGround();
+        setUpRunner();
+    }
+
+    private void setUpGround() {
+        ground = new Ground(WorldUtils.createGround(world));
+        addActor(ground);
+    }
+
+    private void setUpRunner() {
+        runner = new Runner(WorldUtils.createRunner(world));
+        addActor(runner);
     }
 
     private void setupCamera() {
