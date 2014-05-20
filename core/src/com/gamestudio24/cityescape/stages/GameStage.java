@@ -15,6 +15,7 @@ public class GameStage extends Stage {
 
     private World world;
     private Body ground;
+    private Body runner;
 
     private final float TIME_STEP = 1 / 300f;
     private float accumulator = 0f;
@@ -25,6 +26,7 @@ public class GameStage extends Stage {
     public GameStage() {
         world = WorldUtils.createWorld();
         ground = WorldUtils.createGround(world);
+        runner = WorldUtils.createRunner(world);
         renderer = new Box2DDebugRenderer();
         setupCamera();
     }
