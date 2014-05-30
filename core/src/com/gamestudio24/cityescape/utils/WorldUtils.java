@@ -5,6 +5,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.gamestudio24.cityescape.box2d.GroundUserData;
+import com.gamestudio24.cityescape.box2d.RunnerUserData;
 
 public class WorldUtils {
 
@@ -19,6 +21,7 @@ public class WorldUtils {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(Constants.GROUND_WIDTH / 2, Constants.GROUND_HEIGHT / 2);
         body.createFixture(shape, Constants.GROUND_DENSITY);
+        body.setUserData(new GroundUserData());
         shape.dispose();
         return body;
     }
@@ -30,8 +33,10 @@ public class WorldUtils {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(Constants.RUNNER_WIDTH / 2, Constants.RUNNER_HEIGHT / 2);
         Body body = world.createBody(bodyDef);
+        body.setGravityScale(Constants.RUNNER_GRAVITY_SCALE);
         body.createFixture(shape, Constants.RUNNER_DENSITY);
         body.resetMassData();
+        body.setUserData(new RunnerUserData());
         shape.dispose();
         return body;
     }

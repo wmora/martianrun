@@ -19,6 +19,8 @@ public class Constants {
     public static final float RUNNER_Y = GROUND_Y + GROUND_HEIGHT;
     public static final float RUNNER_WIDTH = 1f;
     public static final float RUNNER_HEIGHT = 2f;
+    public static final float RUNNER_GRAVITY_SCALE = 3f;
     public static float RUNNER_DENSITY = 0.5f;
+    public static final Vector2 RUNNER_JUMPING_LINEAR_IMPULSE = new Vector2(0, 13f);
 
 }
