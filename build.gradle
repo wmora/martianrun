@@ -15,8 +15,8 @@ allprojects {
     version = '1.0'
     ext {
         appName = 'City Escape!'
-        gdxVersion = '1.0.0'
-        roboVMVersion = '0.0.11'
+        gdxVersion = '1.1.0'
+        roboVMVersion = '0.0.13'
     }
 
     repositories {
