@@ -33,4 +33,5 @@ public class Constants {
     public static final float FLYING_ENEMY_Y = 3f;
     public static final Vector2 ENEMY_LINEAR_VELOCITY = new Vector2(-10f, 0);
 
+    public static final String BACKGROUND_IMAGE_PATH = "background.png";
 }

@@ -7,17 +7,20 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.ScalingViewport;
+import com.gamestudio24.cityescape.actors.Background;
 import com.gamestudio24.cityescape.actors.Enemy;
 import com.gamestudio24.cityescape.actors.Ground;
 import com.gamestudio24.cityescape.actors.Runner;
 import com.gamestudio24.cityescape.utils.BodyUtils;
+import com.gamestudio24.cityescape.utils.Constants;
 import com.gamestudio24.cityescape.utils.WorldUtils;
 
 public class GameStage extends Stage implements ContactListener {
 
-    // This will be our viewport measurements while working with the debug renderer
-    private static final int VIEWPORT_WIDTH = 20;
-    private static final int VIEWPORT_HEIGHT = 13;
+    private static final int VIEWPORT_WIDTH = Constants.APP_WIDTH;
+    private static final int VIEWPORT_HEIGHT = Constants.APP_HEIGHT;
 
     private World world;
     private Ground ground;
@@ -27,7 +30,6 @@ public class GameStage extends Stage implements ContactListener {
     private float accumulator = 0f;
 
     private OrthographicCamera camera;
-    private Box2DDebugRenderer renderer;
 
     private Rectangle screenLeftSide;
     private Rectangle screenRightSide;
@@ -35,19 +37,24 @@ public class GameStage extends Stage implements ContactListener {
     private Vector3 touchPoint;
 
     public GameStage() {
-        super();
+        super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
+                new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         setUpWorld();
         setupCamera();
         setupTouchControlAreas();
-        renderer = new Box2DDebugRenderer();
     }
 
     private void setUpWorld() {
         world = WorldUtils.createWorld();
         world.setContactListener(this);
+        setUpBackground();
         setUpGround();
         setUpRunner();
         createEnemy();
+    }
+
+    private void setUpBackground() {
+        addActor(new Background());
     }
 
     private void setUpGround() {
@@ -114,7 +121,6 @@ public class GameStage extends Stage implements ContactListener {
     @Override
     public void draw() {
         super.draw();
-        renderer.render(world, camera.combined);
     }
 
     @Override
