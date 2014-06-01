@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
+import com.gamestudio24.cityescape.actors.Enemy;
 import com.gamestudio24.cityescape.actors.Ground;
 import com.gamestudio24.cityescape.actors.Runner;
 import com.gamestudio24.cityescape.utils.BodyUtils;
@@ -45,6 +47,7 @@ public class GameStage extends Stage implements ContactListener {
         world.setContactListener(this);
         setUpGround();
         setUpRunner();
+        createEnemy();
     }
 
     private void setUpGround() {
@@ -75,6 +78,13 @@ public class GameStage extends Stage implements ContactListener {
     public void act(float delta) {
         super.act(delta);
 
+        Array<Body> bodies = new Array<Body>(world.getBodyCount());
+        world.getBodies(bodies);
+
+        for (Body body : bodies) {
+            update(body);
+        }
+
         // Fixed timestep
         accumulator += delta;
 
@@ -85,6 +95,20 @@ public class GameStage extends Stage implements ContactListener {
 
         //TODO: Implement interpolation
 
+    }
+
+    private void update(Body body) {
+        if (!BodyUtils.bodyInBounds(body)) {
+            if (BodyUtils.bodyIsEnemy(body) && !runner.isHit()) {
+                createEnemy();
+            }
+            world.destroyBody(body);
+        }
+    }
+
+    private void createEnemy() {
+        Enemy enemy = new Enemy(WorldUtils.createEnemy(world));
+        addActor(enemy);
     }
 
     @Override
@@ -128,6 +152,7 @@ public class GameStage extends Stage implements ContactListener {
 
     /**
      * Helper function to get the actual coordinates in my world
+     *
      * @param x
      * @param y
      */
@@ -141,7 +166,10 @@ public class GameStage extends Stage implements ContactListener {
         Body a = contact.getFixtureA().getBody();
         Body b = contact.getFixtureB().getBody();
 
-        if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsGround(b)) ||
+        if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsEnemy(b)) ||
+                (BodyUtils.bodyIsEnemy(a) && BodyUtils.bodyIsRunner(b))) {
+            runner.hit();
+        } else if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsGround(b)) ||
                 (BodyUtils.bodyIsGround(a) && BodyUtils.bodyIsRunner(b))) {
             runner.landed();
         }
