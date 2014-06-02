@@ -11,7 +11,7 @@ public class Enemy extends GameActor {
 
     @Override
     public EnemyUserData getUserData() {
-        return (EnemyUserData) super.getUserData();
+        return (EnemyUserData) userData;
     }
 
     @Override

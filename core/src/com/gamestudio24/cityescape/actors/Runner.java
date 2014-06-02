@@ -16,7 +16,7 @@ public class Runner extends GameActor {
 
     @Override
     public RunnerUserData getUserData() {
-        return (RunnerUserData) super.getUserData();
+        return (RunnerUserData) userData;
     }
 
     public void jump() {
