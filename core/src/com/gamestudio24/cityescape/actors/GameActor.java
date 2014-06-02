@@ -44,7 +44,7 @@ public abstract class GameActor extends Actor {
         screenRectangle.height = transformToScreen(userData.getHeight());
     }
 
-    private float transformToScreen(float n) {
+    protected float transformToScreen(float n) {
         return Constants.WORLD_TO_SCREEN * n;
     }
 
