@@ -4,10 +4,8 @@ import com.gamestudio24.cityescape.enums.UserDataType;
 
 public class GroundUserData extends UserData {
 
-    // We won't do much with this one
-
-    public GroundUserData() {
-        super();
+    public GroundUserData(float width, float height) {
+        super(width, height);
         userDataType = UserDataType.GROUND;
     }
 
