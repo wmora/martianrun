@@ -1,7 +1,7 @@
 CityEscape
 ==========
 
-A 2D Running Game Built with libGDX
+A 2D Running Game Built with [libGDX](libgdx.badlogicgames.com)
 
 You can find a tutorial of how it was implemented here:
 
@@ -12,3 +12,6 @@ You can find a tutorial of how it was implemented here:
 * [Part 5: Character Animations](http://www.williammora.com/2014/06/a-running-game-with-libgdx-part-5.html)
 
 The game with added features is on [Google Play](https://play.google.com/apps/testing/com.gamestudio24.cityescape.android)
+
+Graphics by [Kenney](http://www.kenney.nl/)
+Music by [Kevin MacLeod](incompetech.com)
