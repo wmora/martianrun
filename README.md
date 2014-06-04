@@ -11,7 +11,7 @@ You can find a tutorial of how it was implemented here:
 * [Part 4: Background Animation](http://www.williammora.com/2014/06/a-running-game-with-libgdx-part-4.html)
 * [Part 5: Character Animations](http://www.williammora.com/2014/06/a-running-game-with-libgdx-part-5.html)
 
-The game with added features is on [Google Play](https://play.google.com/apps/testing/com.gamestudio24.cityescape.android)
+The game with added features is on [Google Play](https://play.google.com/store/apps/details?id=com.gamestudio24.cityescape.android)
 
 Graphics by [Kenney](http://www.kenney.nl/)
 Music by [Kevin MacLeod](incompetech.com)
