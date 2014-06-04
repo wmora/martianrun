@@ -13,6 +13,7 @@ import com.gamestudio24.cityescape.actors.Background;
 import com.gamestudio24.cityescape.actors.Enemy;
 import com.gamestudio24.cityescape.actors.Ground;
 import com.gamestudio24.cityescape.actors.Runner;
+import com.gamestudio24.cityescape.actors.menu.SoundButton;
 import com.gamestudio24.cityescape.utils.BodyUtils;
 import com.gamestudio24.cityescape.utils.Constants;
 import com.gamestudio24.cityescape.utils.WorldUtils;
@@ -34,6 +35,8 @@ public class GameStage extends Stage implements ContactListener {
     private Rectangle screenLeftSide;
     private Rectangle screenRightSide;
 
+    private SoundButton soundButton;
+
     private Vector3 touchPoint;
 
     public GameStage() {
@@ -42,6 +45,14 @@ public class GameStage extends Stage implements ContactListener {
         setUpWorld();
         setupCamera();
         setupTouchControlAreas();
+        setupMenu();
+    }
+
+    private void setupMenu() {
+        Rectangle soundButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 17 / 20,
+                getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+        soundButton = new SoundButton(soundButtonBounds);
+        addActor(soundButton);
     }
 
     private void setUpWorld() {
@@ -129,6 +140,11 @@ public class GameStage extends Stage implements ContactListener {
         // Need to get the actual coordinates
         translateScreenToWorldCoordinates(x, y);
 
+        // If a menu control was touched ignore the rest
+        if (menuControlTouched(touchPoint.x, touchPoint.y)) {
+            return true;
+        }
+
         if (rightSideTouched(touchPoint.x, touchPoint.y)) {
             runner.jump();
         } else if (leftSideTouched(touchPoint.x, touchPoint.y)) {
@@ -146,6 +162,17 @@ public class GameStage extends Stage implements ContactListener {
         }
 
         return super.touchUp(screenX, screenY, pointer, button);
+    }
+
+    private boolean menuControlTouched(float x, float y) {
+
+        if (soundButton.getBounds().contains(x, y)) {
+            soundButton.toggle();
+            return true;
+        }
+
+        return false;
+
     }
 
     private boolean rightSideTouched(float x, float y) {

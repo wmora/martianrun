@@ -1,12 +1,14 @@
 package com.gamestudio24.cityescape.actors;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gamestudio24.cityescape.box2d.RunnerUserData;
+import com.gamestudio24.cityescape.utils.AudioUtils;
 import com.gamestudio24.cityescape.utils.Constants;
 
 public class Runner extends GameActor {
@@ -20,9 +22,12 @@ public class Runner extends GameActor {
     private TextureRegion hitTexture;
     private float stateTime;
 
+    private Sound jumpSound;
+    private Sound hitSound;
+
     public Runner(Body body) {
         super(body);
-        TextureAtlas textureAtlas = new TextureAtlas(Constants.CHARACTERS_ATLAS_PATH);
+        TextureAtlas textureAtlas = new TextureAtlas(Constants.SPRITES_ATLAS_PATH);
         TextureRegion[] runningFrames = new TextureRegion[Constants.RUNNER_RUNNING_REGION_NAMES.length];
         for (int i = 0; i < Constants.RUNNER_RUNNING_REGION_NAMES.length; i++) {
             String path = Constants.RUNNER_RUNNING_REGION_NAMES[i];
@@ -33,6 +38,8 @@ public class Runner extends GameActor {
         jumpingTexture = textureAtlas.findRegion(Constants.RUNNER_JUMPING_REGION_NAME);
         dodgingTexture = textureAtlas.findRegion(Constants.RUNNER_DODGING_REGION_NAME);
         hitTexture = textureAtlas.findRegion(Constants.RUNNER_HIT_REGION_NAME);
+        jumpSound = AudioUtils.createSound(Constants.RUNNER_JUMPING_SOUND);
+        hitSound = AudioUtils.createSound(Constants.RUNNER_HIT_SOUND);
     }
 
     @Override
@@ -68,6 +75,7 @@ public class Runner extends GameActor {
         if (!(jumping || dodging || hit)) {
             body.applyLinearImpulse(getUserData().getJumpingLinearImpulse(), body.getWorldCenter(), true);
             jumping = true;
+            AudioUtils.playSound(jumpSound);
         }
 
     }
@@ -98,6 +106,7 @@ public class Runner extends GameActor {
     public void hit() {
         body.applyAngularImpulse(getUserData().getHitAngularImpulse(), true);
         hit = true;
+        AudioUtils.playSound(hitSound);
     }
 
     public boolean isHit() {
