@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gamestudio24.cityescape.box2d.EnemyUserData;
+import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.Constants;
 
 public class Enemy extends GameActor {
@@ -40,7 +41,11 @@ public class Enemy extends GameActor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        stateTime += Gdx.graphics.getDeltaTime();
+
+        if (gameState == GameState.RUNNING) {
+            stateTime += Gdx.graphics.getDeltaTime();
+        }
+
         batch.draw(animation.getKeyFrame(stateTime, true), (screenRectangle.x - (screenRectangle.width * 0.1f)),
                 screenRectangle.y, screenRectangle.width * 1.2f, screenRectangle.height * 1.1f);
     }

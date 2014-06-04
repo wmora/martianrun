@@ -6,14 +6,17 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.gamestudio24.cityescape.enums.GameState;
+import com.gamestudio24.cityescape.stages.GameStage;
 import com.gamestudio24.cityescape.utils.Constants;
 
-public class Background extends Actor {
+public class Background extends Actor implements GameStage.GameListener {
 
     private final TextureRegion textureRegion;
     private Rectangle textureRegionBounds1;
     private Rectangle textureRegionBounds2;
     private int speed = 100;
+    private GameState gameState;
 
     public Background() {
         textureRegion = new TextureRegion(new Texture(Gdx.files.internal(Constants.BACKGROUND_IMAGE_PATH)));
@@ -23,6 +26,11 @@ public class Background extends Actor {
 
     @Override
     public void act(float delta) {
+
+        if (gameState == GameState.PAUSED) {
+            return;
+        }
+
         if (leftBoundsReached(delta)) {
             resetBounds();
         } else {
@@ -53,4 +61,8 @@ public class Background extends Actor {
         textureRegionBounds2 = new Rectangle(Constants.APP_WIDTH, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
     }
 
+    @Override
+    public void onGameStateChange(GameState newState) {
+        gameState = newState;
+    }
 }

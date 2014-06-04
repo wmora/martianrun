@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gamestudio24.cityescape.box2d.GroundUserData;
+import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.Constants;
 
 public class Ground extends GameActor {
@@ -33,6 +34,11 @@ public class Ground extends GameActor {
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        if (gameState == GameState.PAUSED) {
+            return;
+        }
+
         if (leftBoundsReached(delta)) {
             resetBounds();
         } else {

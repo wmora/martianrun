@@ -53,6 +53,8 @@ public class Constants {
     public static final String SOUND_OFF_REGION_NAME = "sound_off";
     public static final String MUSIC_ON_REGION_NAME = "music_on";
     public static final String MUSIC_OFF_REGION_NAME = "music_off";
+    public static final String PAUSE_REGION_NAME = "pause";
+    public static final String PLAY_REGION_NAME = "play";
 
     public static final String RUNNER_JUMPING_SOUND = "jump.wav";
     public static final String RUNNER_HIT_SOUND = "hit.wav";
