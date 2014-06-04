@@ -107,44 +107,58 @@ music_on
   orig: 48, 48
   offset: 0, 0
   index: -1
-sound_off
+pause
   rotate: false
   xy: 2, 295
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
-sound_on
+play
   rotate: false
   xy: 52, 295
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
-spider_walk1
+sound_off
   rotate: false
   xy: 102, 295
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+sound_on
+  rotate: false
+  xy: 152, 295
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+spider_walk1
+  rotate: false
+  xy: 2, 345
   size: 72, 51
   orig: 72, 51
   offset: 0, 0
   index: -1
 spider_walk2
   rotate: false
-  xy: 176, 295
+  xy: 76, 345
   size: 77, 53
   orig: 77, 53
   offset: 0, 0
   index: -1
 worm_walk1
   rotate: false
-  xy: 2, 350
+  xy: 155, 345
   size: 63, 23
   orig: 63, 23
   offset: 0, 0
   index: -1
 worm_walk2
   rotate: false
-  xy: 67, 350
+  xy: 2, 400
   size: 63, 23
   orig: 63, 23
   offset: 0, 0
