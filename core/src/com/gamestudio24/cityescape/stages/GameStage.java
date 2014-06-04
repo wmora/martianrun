@@ -13,6 +13,7 @@ import com.gamestudio24.cityescape.actors.Background;
 import com.gamestudio24.cityescape.actors.Enemy;
 import com.gamestudio24.cityescape.actors.Ground;
 import com.gamestudio24.cityescape.actors.Runner;
+import com.gamestudio24.cityescape.actors.menu.MusicButton;
 import com.gamestudio24.cityescape.actors.menu.SoundButton;
 import com.gamestudio24.cityescape.utils.BodyUtils;
 import com.gamestudio24.cityescape.utils.Constants;
@@ -36,6 +37,7 @@ public class GameStage extends Stage implements ContactListener {
     private Rectangle screenRightSide;
 
     private SoundButton soundButton;
+    private MusicButton musicButton;
 
     private Vector3 touchPoint;
 
@@ -44,15 +46,28 @@ public class GameStage extends Stage implements ContactListener {
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         setUpWorld();
         setupCamera();
-        setupTouchControlAreas();
         setupMenu();
+        setupTouchControlAreas();
+        Gdx.input.setInputProcessor(this);
     }
 
     private void setupMenu() {
-        Rectangle soundButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 17 / 20,
+        setupSound();
+        setupMusic();
+    }
+
+    private void setupSound() {
+        Rectangle soundButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 14 / 20,
                 getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
         soundButton = new SoundButton(soundButtonBounds);
         addActor(soundButton);
+    }
+
+    private void setupMusic() {
+        Rectangle musicButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 17 / 20,
+                getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+        musicButton = new MusicButton(musicButtonBounds);
+        addActor(musicButton);
     }
 
     private void setUpWorld() {
@@ -89,7 +104,6 @@ public class GameStage extends Stage implements ContactListener {
         screenLeftSide = new Rectangle(0, 0, getCamera().viewportWidth / 2, getCamera().viewportHeight);
         screenRightSide = new Rectangle(getCamera().viewportWidth / 2, 0, getCamera().viewportWidth / 2,
                 getCamera().viewportHeight);
-        Gdx.input.setInputProcessor(this);
     }
 
     @Override
@@ -142,7 +156,7 @@ public class GameStage extends Stage implements ContactListener {
 
         // If a menu control was touched ignore the rest
         if (menuControlTouched(touchPoint.x, touchPoint.y)) {
-            return true;
+            return super.touchDown(x, y, pointer, button);
         }
 
         if (rightSideTouched(touchPoint.x, touchPoint.y)) {
@@ -165,14 +179,7 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private boolean menuControlTouched(float x, float y) {
-
-        if (soundButton.getBounds().contains(x, y)) {
-            soundButton.touched();
-            return true;
-        }
-
-        return false;
-
+        return soundButton.getBounds().contains(x, y) || musicButton.getBounds().contains(x, y);
     }
 
     private boolean rightSideTouched(float x, float y) {

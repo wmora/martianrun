@@ -2,19 +2,34 @@ package com.gamestudio24.cityescape.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 public class AudioUtils {
 
     private static final String PREFERENCES_NAME = "preferences";
+    private static final String MUSIC_ON_PREFERENCE = "music_on";
     private static final String SOUND_ON_PREFERENCE = "sound_on";
 
     private static Preferences getPreferences() {
         return Gdx.app.getPreferences(PREFERENCES_NAME);
     }
 
+    public static Music createMusic(String musicFileName) {
+        Music music = Gdx.audio.newMusic(Gdx.files.internal(musicFileName));
+        music.setLooping(true);
+        return music;
+    }
+
     public static Sound createSound(String soundFileName) {
         return Gdx.audio.newSound(Gdx.files.internal(soundFileName));
+    }
+
+    public static void playMusic(Music music) {
+        boolean musicOn = getPreferences().getBoolean(MUSIC_ON_PREFERENCE, true);
+        if (musicOn) {
+            music.play();
+        }
     }
 
     public static void playSound(Sound sound) {
@@ -22,6 +37,10 @@ public class AudioUtils {
         if (soundOn) {
             sound.play();
         }
+    }
+
+    public static void toggleMusic() {
+        saveBoolean(MUSIC_ON_PREFERENCE, !getPreferences().getBoolean(MUSIC_ON_PREFERENCE, true));
     }
 
     public static void toggleSound() {
@@ -34,8 +53,26 @@ public class AudioUtils {
         preferences.flush();
     }
 
+    public static void disposeMusic(Music music) {
+        music.dispose();
+    }
+
+    public static void stopMusic(Music music) {
+        music.stop();
+    }
+
+    public static void pauseMusic(Music music) {
+        music.pause();
+    }
+
     public static String getSoundRegionName() {
         boolean soundOn = getPreferences().getBoolean(SOUND_ON_PREFERENCE, true);
         return soundOn ? Constants.SOUND_ON_REGION_NAME : Constants.SOUND_OFF_REGION_NAME;
     }
+
+    public static String getMusicRegionName() {
+        boolean musicOn = getPreferences().getBoolean(MUSIC_ON_PREFERENCE, true);
+        return musicOn ? Constants.MUSIC_ON_REGION_NAME : Constants.MUSIC_OFF_REGION_NAME;
+    }
+
 }
