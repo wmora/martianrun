@@ -167,7 +167,7 @@ public class GameStage extends Stage implements ContactListener {
     private boolean menuControlTouched(float x, float y) {
 
         if (soundButton.getBounds().contains(x, y)) {
-            soundButton.toggle();
+            soundButton.touched();
             return true;
         }
 
