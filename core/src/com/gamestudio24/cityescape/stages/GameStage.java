@@ -63,6 +63,7 @@ public class GameStage extends Stage implements ContactListener {
         setupMenu();
         setupTouchControlAreas();
         Gdx.input.setInputProcessor(this);
+        //onGameOver();
     }
 
     private void setupMenu() {
@@ -268,17 +269,21 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void onGamePaused() {
-        for (Actor actor : getActors()) {
-            if (actor instanceof GameListener) {
-                ((GameListener) actor).onGameStateChange(GameState.PAUSED);
-            }
-        }
+        notifyState(GameState.PAUSED);
     }
 
     private void onGameResumed() {
+        notifyState(GameState.RUNNING);
+    }
+
+    private void onGameOver() {
+        notifyState(GameState.OVER);
+    }
+
+    private void notifyState(GameState state) {
         for (Actor actor : getActors()) {
             if (actor instanceof GameListener) {
-                ((GameListener) actor).onGameStateChange(GameState.RUNNING);
+                ((GameListener) actor).onGameStateChange(state);
             }
         }
     }

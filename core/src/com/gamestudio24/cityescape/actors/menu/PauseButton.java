@@ -37,6 +37,9 @@ public class PauseButton extends GameButton implements GameStage.GameListener {
 
     @Override
     public void onGameStateChange(GameState newState) {
+        if (newState == GameState.OVER) {
+            remove();
+        }
         gameState = newState;
     }
 
