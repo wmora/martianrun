@@ -5,15 +5,14 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.gamestudio24.cityescape.box2d.UserData;
 import com.gamestudio24.cityescape.enums.GameState;
-import com.gamestudio24.cityescape.stages.GameStage;
 import com.gamestudio24.cityescape.utils.Constants;
+import com.gamestudio24.cityescape.utils.GameStateManager;
 
-public abstract class GameActor extends Actor implements GameStage.GameListener {
+public abstract class GameActor extends Actor {
 
     protected Body body;
     protected UserData userData;
     protected Rectangle screenRectangle;
-    protected GameState gameState;
 
     public GameActor(Body body) {
         this.body = body;
@@ -25,7 +24,7 @@ public abstract class GameActor extends Actor implements GameStage.GameListener 
     public void act(float delta) {
         super.act(delta);
 
-        if (gameState == GameState.PAUSED) {
+        if (GameStateManager.getInstance().getGameState() == GameState.PAUSED) {
             return;
         }
 
@@ -49,11 +48,6 @@ public abstract class GameActor extends Actor implements GameStage.GameListener 
 
     protected float transformToScreen(float n) {
         return Constants.WORLD_TO_SCREEN * n;
-    }
-
-    @Override
-    public void onGameStateChange(GameState newState) {
-        gameState = newState;
     }
 
 }

@@ -11,6 +11,7 @@ import com.gamestudio24.cityescape.box2d.RunnerUserData;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.AudioUtils;
 import com.gamestudio24.cityescape.utils.Constants;
+import com.gamestudio24.cityescape.utils.GameStateManager;
 
 public class Runner extends GameActor {
 
@@ -61,7 +62,7 @@ public class Runner extends GameActor {
             batch.draw(jumpingTexture, x, y, width, screenRectangle.height);
         } else {
             // Running
-            if (gameState == GameState.RUNNING) {
+            if (GameStateManager.getInstance().getGameState() == GameState.RUNNING) {
                 stateTime += Gdx.graphics.getDeltaTime();
             }
             batch.draw(runningAnimation.getKeyFrame(stateTime, true), x, y, width, screenRectangle.height);

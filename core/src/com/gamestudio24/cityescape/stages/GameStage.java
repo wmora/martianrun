@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
@@ -20,15 +19,10 @@ import com.gamestudio24.cityescape.actors.menu.SoundButton;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.BodyUtils;
 import com.gamestudio24.cityescape.utils.Constants;
+import com.gamestudio24.cityescape.utils.GameStateManager;
 import com.gamestudio24.cityescape.utils.WorldUtils;
 
-import java.util.ArrayList;
-
 public class GameStage extends Stage implements ContactListener {
-
-    public interface GameListener {
-        public void onGameStateChange(GameState newState);
-    }
 
     private static final int VIEWPORT_WIDTH = Constants.APP_WIDTH;
     private static final int VIEWPORT_HEIGHT = Constants.APP_HEIGHT;
@@ -49,8 +43,6 @@ public class GameStage extends Stage implements ContactListener {
     private MusicButton musicButton;
     private PauseButton pauseButton;
 
-    private ArrayList<GameListener> listeners;
-
     private Vector3 touchPoint;
 
     private boolean paused;
@@ -63,7 +55,7 @@ public class GameStage extends Stage implements ContactListener {
         setupMenu();
         setupTouchControlAreas();
         Gdx.input.setInputProcessor(this);
-        //onGameOver();
+        onGameResumed();
     }
 
     private void setupMenu() {
@@ -230,6 +222,7 @@ public class GameStage extends Stage implements ContactListener {
         if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsEnemy(b)) ||
                 (BodyUtils.bodyIsEnemy(a) && BodyUtils.bodyIsRunner(b))) {
             runner.hit();
+            onGameOver();
         } else if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsGround(b)) ||
                 (BodyUtils.bodyIsGround(a) && BodyUtils.bodyIsRunner(b))) {
             runner.landed();
@@ -269,23 +262,15 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void onGamePaused() {
-        notifyState(GameState.PAUSED);
+        GameStateManager.getInstance().setGameState(GameState.PAUSED);
     }
 
     private void onGameResumed() {
-        notifyState(GameState.RUNNING);
+        GameStateManager.getInstance().setGameState(GameState.RUNNING);
     }
 
     private void onGameOver() {
-        notifyState(GameState.OVER);
-    }
-
-    private void notifyState(GameState state) {
-        for (Actor actor : getActors()) {
-            if (actor instanceof GameListener) {
-                ((GameListener) actor).onGameStateChange(state);
-            }
-        }
+        GameStateManager.getInstance().setGameState(GameState.OVER);
     }
 
 }

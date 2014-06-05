@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.gamestudio24.cityescape.box2d.EnemyUserData;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.Constants;
+import com.gamestudio24.cityescape.utils.GameStateManager;
 
 public class Enemy extends GameActor {
 
@@ -42,7 +43,7 @@ public class Enemy extends GameActor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
 
-        if (gameState == GameState.RUNNING) {
+        if (GameStateManager.getInstance().getGameState() == GameState.RUNNING) {
             stateTime += Gdx.graphics.getDeltaTime();
         }
 
