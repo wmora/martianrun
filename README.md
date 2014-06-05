@@ -14,4 +14,5 @@ You can find a tutorial of how it was implemented here:
 The game with added features is on [Google Play](https://play.google.com/store/apps/details?id=com.gamestudio24.cityescape.android)
 
 Graphics by [Kenney](http://www.kenney.nl)
+
 Music by [Kevin MacLeod](http://www.incompetech.com)
