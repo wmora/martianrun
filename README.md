@@ -1,5 +1,4 @@
-CityEscape
-==========
+# CityEscape
 
 A 2D Running Game Built with [libGDX](libgdx.badlogicgames.com)
 
