@@ -15,10 +15,6 @@ public abstract class GameActor extends Actor implements GameStage.GameListener 
     protected Rectangle screenRectangle;
     protected GameState gameState;
 
-    public GameActor() {
-
-    }
-
     public GameActor(Body body) {
         this.body = body;
         this.userData = (UserData) body.getUserData();
