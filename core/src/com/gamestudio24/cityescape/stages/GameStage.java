@@ -221,6 +221,9 @@ public class GameStage extends Stage implements ContactListener {
 
         if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsEnemy(b)) ||
                 (BodyUtils.bodyIsEnemy(a) && BodyUtils.bodyIsRunner(b))) {
+            if (runner.isHit()) {
+                return;
+            }
             runner.hit();
             onGameOver();
         } else if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsGround(b)) ||
