@@ -45,8 +45,6 @@ public class GameStage extends Stage implements ContactListener {
 
     private Vector3 touchPoint;
 
-    private boolean paused;
-
     public GameStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
@@ -125,7 +123,7 @@ public class GameStage extends Stage implements ContactListener {
     public void act(float delta) {
         super.act(delta);
 
-        if (paused) return;
+        if (GameStateManager.getInstance().getGameState() == GameState.PAUSED) return;
 
         Array<Body> bodies = new Array<Body>(world.getBodyCount());
         world.getBodies(bodies);
@@ -252,13 +250,11 @@ public class GameStage extends Stage implements ContactListener {
 
         @Override
         public void onPause() {
-            paused = true;
             onGamePaused();
         }
 
         @Override
         public void onResume() {
-            paused = false;
             onGameResumed();
         }
 
