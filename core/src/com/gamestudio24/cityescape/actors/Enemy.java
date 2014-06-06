@@ -43,7 +43,7 @@ public class Enemy extends GameActor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
 
-        if (GameStateManager.getInstance().getGameState() == GameState.RUNNING) {
+        if (GameStateManager.getInstance().getGameState() != GameState.PAUSED) {
             stateTime += Gdx.graphics.getDeltaTime();
         }
 
