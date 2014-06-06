@@ -9,10 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.gamestudio24.cityescape.actors.Background;
-import com.gamestudio24.cityescape.actors.Enemy;
-import com.gamestudio24.cityescape.actors.Ground;
-import com.gamestudio24.cityescape.actors.Runner;
+import com.gamestudio24.cityescape.actors.*;
 import com.gamestudio24.cityescape.actors.menu.*;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.BodyUtils;
@@ -43,6 +40,8 @@ public class GameStage extends Stage implements ContactListener {
     private StartButton startButton;
     private LeaderboardButton leaderboardButton;
 
+    private Score score;
+
     private Vector3 touchPoint;
 
     public GameStage() {
@@ -63,6 +62,7 @@ public class GameStage extends Stage implements ContactListener {
     private void setupFixedMenu() {
         setupSound();
         setupMusic();
+        setupScore();
     }
 
     private void setupSound() {
@@ -77,6 +77,13 @@ public class GameStage extends Stage implements ContactListener {
                 getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
         musicButton = new MusicButton(musicButtonBounds);
         addActor(musicButton);
+    }
+
+    private void setupScore() {
+        Rectangle scoreBounds = new Rectangle(getCamera().viewportWidth * 47 / 64, getCamera().viewportHeight * 59 / 64,
+                getCamera().viewportWidth / 4, getCamera().viewportHeight / 8);
+        score = new Score(scoreBounds);
+        addActor(score);
     }
 
     private void setupPause() {
@@ -316,6 +323,7 @@ public class GameStage extends Stage implements ContactListener {
         public void onStart() {
             setupCharacters();
             setupPause();
+            score.reset();
             onGameResumed();
         }
 
