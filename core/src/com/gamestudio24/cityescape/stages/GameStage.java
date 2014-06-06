@@ -47,13 +47,17 @@ public class GameStage extends Stage implements ContactListener {
     public GameStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
-        setupWorld();
         setupCamera();
-        setupFixedMenu();
+        setupStageBase();
         setupMainMenu();
         setupTouchControlAreas();
         Gdx.input.setInputProcessor(this);
         onGameOver();
+    }
+
+    private void setupStageBase() {
+        setupWorld();
+        setupFixedMenu();
     }
 
     /**
@@ -321,9 +325,10 @@ public class GameStage extends Stage implements ContactListener {
 
         @Override
         public void onStart() {
+            clear();
+            setupStageBase();
             setupCharacters();
             setupPause();
-            score.reset();
             onGameResumed();
         }
 

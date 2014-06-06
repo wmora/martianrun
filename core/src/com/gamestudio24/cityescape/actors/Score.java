@@ -58,8 +58,4 @@ public class Score extends Actor {
         this.multiplier = multiplier;
     }
 
-    public void reset() {
-        score = 0;
-    }
-
 }
