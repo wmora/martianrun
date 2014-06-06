@@ -232,7 +232,7 @@ public class GameStage extends Stage implements ContactListener {
 
         switch (GameStateManager.getInstance().getGameState()) {
             case OVER:
-                touched = startButton.getBounds().contains(x, y);
+                touched = startButton.getBounds().contains(x, y) || leaderboardButton.getBounds().contains(x, y);
                 break;
             case RUNNING:
             case PAUSED:
