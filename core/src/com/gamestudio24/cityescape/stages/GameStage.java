@@ -13,10 +13,7 @@ import com.gamestudio24.cityescape.actors.Background;
 import com.gamestudio24.cityescape.actors.Enemy;
 import com.gamestudio24.cityescape.actors.Ground;
 import com.gamestudio24.cityescape.actors.Runner;
-import com.gamestudio24.cityescape.actors.menu.MusicButton;
-import com.gamestudio24.cityescape.actors.menu.PauseButton;
-import com.gamestudio24.cityescape.actors.menu.SoundButton;
-import com.gamestudio24.cityescape.actors.menu.StartButton;
+import com.gamestudio24.cityescape.actors.menu.*;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.BodyUtils;
 import com.gamestudio24.cityescape.utils.Constants;
@@ -44,6 +41,7 @@ public class GameStage extends Stage implements ContactListener {
     private MusicButton musicButton;
     private PauseButton pauseButton;
     private StartButton startButton;
+    private LeaderboardButton leaderboardButton;
 
     private Vector3 touchPoint;
 
@@ -93,6 +91,7 @@ public class GameStage extends Stage implements ContactListener {
      */
     private void setupMainMenu() {
         setupStart();
+        setupLeaderboard();
     }
 
     private void setupStart() {
@@ -100,6 +99,13 @@ public class GameStage extends Stage implements ContactListener {
                 getCamera().viewportWidth / 4, getCamera().viewportWidth / 4);
         startButton = new StartButton(startButtonBounds, new GameStartButtonListener());
         addActor(startButton);
+    }
+
+    private void setupLeaderboard() {
+        Rectangle leaderboardButtonBounds = new Rectangle(getCamera().viewportWidth * 9 / 16,
+                getCamera().viewportHeight / 3, getCamera().viewportWidth / 4, getCamera().viewportWidth / 4);
+        leaderboardButton = new LeaderboardButton(leaderboardButtonBounds, new GameLeaderboardButtonListener());
+        addActor(leaderboardButton);
     }
 
     private void setupWorld() {
@@ -311,6 +317,15 @@ public class GameStage extends Stage implements ContactListener {
             setupCharacters();
             setupPause();
             onGameResumed();
+        }
+
+    }
+
+    private class GameLeaderboardButtonListener implements LeaderboardButton.LeaderboardButtonListener {
+
+        @Override
+        public void onLeaderboard() {
+            Gdx.app.log(getClass().getSimpleName(), "Launch leaderboard");
         }
 
     }
