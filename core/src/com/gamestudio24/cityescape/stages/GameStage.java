@@ -16,6 +16,7 @@ import com.gamestudio24.cityescape.actors.Runner;
 import com.gamestudio24.cityescape.actors.menu.MusicButton;
 import com.gamestudio24.cityescape.actors.menu.PauseButton;
 import com.gamestudio24.cityescape.actors.menu.SoundButton;
+import com.gamestudio24.cityescape.actors.menu.StartButton;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.BodyUtils;
 import com.gamestudio24.cityescape.utils.Constants;
@@ -42,24 +43,28 @@ public class GameStage extends Stage implements ContactListener {
     private SoundButton soundButton;
     private MusicButton musicButton;
     private PauseButton pauseButton;
+    private StartButton startButton;
 
     private Vector3 touchPoint;
 
     public GameStage() {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
-        setUpWorld();
+        setupWorld();
         setupCamera();
-        setupMenu();
+        setupFixedMenu();
+        setupMainMenu();
         setupTouchControlAreas();
         Gdx.input.setInputProcessor(this);
-        onGameResumed();
+        onGameOver();
     }
 
-    private void setupMenu() {
+    /**
+     * These menu buttons are always displayed
+     */
+    private void setupFixedMenu() {
         setupSound();
         setupMusic();
-        setupPause();
     }
 
     private void setupSound() {
@@ -83,13 +88,25 @@ public class GameStage extends Stage implements ContactListener {
         addActor(pauseButton);
     }
 
-    private void setUpWorld() {
+    /**
+     * These menu buttons are only displayed when the game is over
+     */
+    private void setupMainMenu() {
+        setupStart();
+    }
+
+    private void setupStart() {
+        Rectangle startButtonBounds = new Rectangle(getCamera().viewportWidth * 3 / 16, getCamera().viewportHeight / 3,
+                getCamera().viewportWidth / 4, getCamera().viewportWidth / 4);
+        startButton = new StartButton(startButtonBounds, new GameStartButtonListener());
+        addActor(startButton);
+    }
+
+    private void setupWorld() {
         world = WorldUtils.createWorld();
         world.setContactListener(this);
         setUpBackground();
         setUpGround();
-        setUpRunner();
-        createEnemy();
     }
 
     private void setUpBackground() {
@@ -101,7 +118,15 @@ public class GameStage extends Stage implements ContactListener {
         addActor(ground);
     }
 
+    private void setupCharacters() {
+        setUpRunner();
+        createEnemy();
+    }
+
     private void setUpRunner() {
+        if (runner != null) {
+            runner.remove();
+        }
         runner = new Runner(WorldUtils.createRunner(world));
         addActor(runner);
     }
@@ -169,6 +194,10 @@ public class GameStage extends Stage implements ContactListener {
             return super.touchDown(x, y, pointer, button);
         }
 
+        if (GameStateManager.getInstance().getGameState() != GameState.RUNNING) {
+            return super.touchDown(x, y, pointer, button);
+        }
+
         if (rightSideTouched(touchPoint.x, touchPoint.y)) {
             runner.jump();
         } else if (leftSideTouched(touchPoint.x, touchPoint.y)) {
@@ -181,6 +210,10 @@ public class GameStage extends Stage implements ContactListener {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
+        if (GameStateManager.getInstance().getGameState() != GameState.RUNNING) {
+            return super.touchUp(screenX, screenY, pointer, button);
+        }
+
         if (runner.isDodging()) {
             runner.stopDodge();
         }
@@ -189,8 +222,19 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private boolean menuControlTouched(float x, float y) {
-        return soundButton.getBounds().contains(x, y) || musicButton.getBounds().contains(x, y)
-                || pauseButton.getBounds().contains(x, y);
+        boolean touched = false;
+
+        switch (GameStateManager.getInstance().getGameState()) {
+            case OVER:
+                touched = startButton.getBounds().contains(x, y);
+                break;
+            case RUNNING:
+            case PAUSED:
+                touched = pauseButton.getBounds().contains(x, y);
+                break;
+        }
+
+        return touched || soundButton.getBounds().contains(x, y) || musicButton.getBounds().contains(x, y);
     }
 
     private boolean rightSideTouched(float x, float y) {
@@ -260,6 +304,17 @@ public class GameStage extends Stage implements ContactListener {
 
     }
 
+    private class GameStartButtonListener implements StartButton.StartButtonListener {
+
+        @Override
+        public void onStart() {
+            setupCharacters();
+            setupPause();
+            onGameResumed();
+        }
+
+    }
+
     private void onGamePaused() {
         GameStateManager.getInstance().setGameState(GameState.PAUSED);
     }
@@ -270,6 +325,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private void onGameOver() {
         GameStateManager.getInstance().setGameState(GameState.OVER);
+        setupMainMenu();
     }
 
 }
