@@ -49,6 +49,7 @@ public class GameStage extends Stage implements ContactListener {
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         setUpCamera();
         setUpStageBase();
+        setUpGameLabel();
         setUpMainMenu();
         setUpTouchControlAreas();
         Gdx.input.setInputProcessor(this);
@@ -58,6 +59,12 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpStageBase() {
         setUpWorld();
         setUpFixedMenu();
+    }
+
+    private void setUpGameLabel() {
+        Rectangle gameLabelBounds = new Rectangle(0, getCamera().viewportHeight * 7 / 8, getCamera().viewportWidth,
+                getCamera().viewportHeight / 4);
+        addActor(new GameLabel(gameLabelBounds));
     }
 
     /**
@@ -106,7 +113,7 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpStart() {
-        Rectangle startButtonBounds = new Rectangle(getCamera().viewportWidth * 3 / 16, getCamera().viewportHeight / 3,
+        Rectangle startButtonBounds = new Rectangle(getCamera().viewportWidth * 3 / 16, getCamera().viewportHeight / 4,
                 getCamera().viewportWidth / 4, getCamera().viewportWidth / 4);
         startButton = new StartButton(startButtonBounds, new GameStartButtonListener());
         addActor(startButton);
@@ -114,7 +121,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private void setUpLeaderboard() {
         Rectangle leaderboardButtonBounds = new Rectangle(getCamera().viewportWidth * 9 / 16,
-                getCamera().viewportHeight / 3, getCamera().viewportWidth / 4, getCamera().viewportWidth / 4);
+                getCamera().viewportHeight / 4, getCamera().viewportWidth / 4, getCamera().viewportWidth / 4);
         leaderboardButton = new LeaderboardButton(leaderboardButtonBounds, new GameLeaderboardButtonListener());
         addActor(leaderboardButton);
     }
