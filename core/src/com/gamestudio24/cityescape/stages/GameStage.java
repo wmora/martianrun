@@ -45,6 +45,8 @@ public class GameStage extends Stage implements ContactListener {
     private Score score;
     private float totalTimePassed;
 
+    private boolean adDisplayed;
+
     private Vector3 touchPoint;
 
     public GameStage() {
@@ -315,6 +317,9 @@ public class GameStage extends Stage implements ContactListener {
                 return;
             }
             runner.hit();
+            if (!adDisplayed) {
+                displayAd();
+            }
             onGameOver();
         } else if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsGround(b)) ||
                 (BodyUtils.bodyIsGround(a) && BodyUtils.bodyIsRunner(b))) {
@@ -340,8 +345,22 @@ public class GameStage extends Stage implements ContactListener {
             runner.onDifficultyChange(GameManager.getInstance().getDifficulty());
             score.setMultiplier(GameManager.getInstance().getDifficulty().getScoreMultiplier());
 
+            if (!adDisplayed) {
+                displayAd();
+            }
+
         }
 
+    }
+
+    private void displayAd() {
+        GameManager.getInstance().displayAd();
+        adDisplayed = true;
+    }
+
+    private void hideAd() {
+        GameManager.getInstance().hideAd();
+        adDisplayed = false;
     }
 
     @Override
@@ -401,11 +420,17 @@ public class GameStage extends Stage implements ContactListener {
         public void onAbout() {
             if (GameManager.getInstance().getGameState() == GameState.OVER ) {
                 onGameAbout();
+                if (adDisplayed) {
+                    hideAd();
+                }
             } else {
                 clear();
                 setUpStageBase();
                 setUpGameLabel();
                 onGameOver();
+                if (!adDisplayed) {
+                    displayAd();
+                }
             }
         }
 
