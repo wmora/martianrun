@@ -8,15 +8,13 @@ import com.badlogic.gdx.audio.Sound;
 public class AudioUtils {
 
     private static AudioUtils ourInstance = new AudioUtils();
-    private Music music;
+    private static Music music;
 
     private static final String PREFERENCES_NAME = "preferences";
     private static final String MUSIC_ON_PREFERENCE = "music_on";
     private static final String SOUND_ON_PREFERENCE = "sound_on";
 
     private AudioUtils() {
-        createMusic(Constants.GAME_MUSIC);
-        playMusic();
     }
 
     public static AudioUtils getInstance() {
@@ -31,10 +29,9 @@ public class AudioUtils {
         return Gdx.app.getPreferences(PREFERENCES_NAME);
     }
 
-    private Music createMusic(String musicFileName) {
-        music = Gdx.audio.newMusic(Gdx.files.internal(musicFileName));
-        music.setLooping(true);
-        return music;
+    public void init() {
+        music = Gdx.audio.newMusic(Gdx.files.internal(Constants.GAME_MUSIC));
+        music.setLooping(true);AudioUtils.getInstance().playMusic();
     }
 
     public Sound createSound(String soundFileName) {
@@ -71,10 +68,6 @@ public class AudioUtils {
 
     public void disposeMusic() {
         music.dispose();
-    }
-
-    public void stopMusic() {
-        music.stop();
     }
 
     public void pauseMusic() {

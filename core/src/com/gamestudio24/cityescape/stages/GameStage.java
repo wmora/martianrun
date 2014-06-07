@@ -53,6 +53,7 @@ public class GameStage extends Stage implements ContactListener {
         setUpMainMenu();
         setUpTouchControlAreas();
         Gdx.input.setInputProcessor(this);
+        AudioUtils.getInstance().init();
         onGameOver();
     }
 
