@@ -47,6 +47,9 @@ public class Score extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
+        if (getScore() == 0) {
+            return;
+        }
         font.drawWrapped(batch, String.format("%d", getScore()), bounds.x, bounds.y, bounds.width, BitmapFont.HAlignment.RIGHT);
     }
 
