@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Constants {
 
-    public static final String GAME_NAME = "City Escape!";
+    public static final String GAME_NAME = "Martian Run!";
 
     public static final int APP_WIDTH = 800;
     public static final int APP_HEIGHT = 480;
