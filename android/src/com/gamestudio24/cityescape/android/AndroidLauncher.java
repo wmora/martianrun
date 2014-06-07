@@ -1,5 +1,6 @@
 package com.gamestudio24.cityescape.android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -54,9 +55,15 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
 
         setContentView(layout);
 
-        gameHelper = new GameHelper(this, GameHelper.CLIENT_ALL);
+        gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
         gameHelper.setup(this);
         gameHelper.setMaxAutoSignInAttempts(0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        gameHelper.onActivityResult(requestCode, resultCode, data);
     }
 
     private AdRequest createAdRequest() {
