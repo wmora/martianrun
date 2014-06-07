@@ -11,12 +11,12 @@ public class SoundButton extends GameButton {
 
     @Override
     protected String getRegionName() {
-        return AudioUtils.getSoundRegionName();
+        return AudioUtils.getInstance().getSoundRegionName();
     }
 
     @Override
     public void touched() {
-        AudioUtils.toggleSound();
+        AudioUtils.getInstance().toggleSound();
     }
 
 }
