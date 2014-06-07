@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.Constants;
-import com.gamestudio24.cityescape.utils.GameStateManager;
+import com.gamestudio24.cityescape.utils.GameManager;
 
 public class Background extends Actor {
 
@@ -26,7 +26,7 @@ public class Background extends Actor {
     @Override
     public void act(float delta) {
 
-        if (GameStateManager.getInstance().getGameState() != GameState.RUNNING) {
+        if (GameManager.getInstance().getGameState() != GameState.RUNNING) {
             return;
         }
 

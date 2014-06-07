@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.gamestudio24.cityescape.box2d.GroundUserData;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.Constants;
-import com.gamestudio24.cityescape.utils.GameStateManager;
+import com.gamestudio24.cityescape.utils.GameManager;
 
 public class Ground extends GameActor {
 
@@ -36,7 +36,7 @@ public class Ground extends GameActor {
     public void act(float delta) {
         super.act(delta);
 
-        if (GameStateManager.getInstance().getGameState() != GameState.RUNNING) {
+        if (GameManager.getInstance().getGameState() != GameState.RUNNING) {
             return;
         }
 

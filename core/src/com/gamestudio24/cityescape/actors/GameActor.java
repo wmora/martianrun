@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.gamestudio24.cityescape.box2d.UserData;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.Constants;
-import com.gamestudio24.cityescape.utils.GameStateManager;
+import com.gamestudio24.cityescape.utils.GameManager;
 
 public abstract class GameActor extends Actor {
 
@@ -24,7 +24,7 @@ public abstract class GameActor extends Actor {
     public void act(float delta) {
         super.act(delta);
 
-        if (GameStateManager.getInstance().getGameState() == GameState.PAUSED) {
+        if (GameManager.getInstance().getGameState() == GameState.PAUSED) {
             return;
         }
 

@@ -3,7 +3,7 @@ package com.gamestudio24.cityescape.actors.menu;
 import com.badlogic.gdx.math.Rectangle;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.Constants;
-import com.gamestudio24.cityescape.utils.GameStateManager;
+import com.gamestudio24.cityescape.utils.GameManager;
 
 public class LeaderboardButton extends GameButton {
 
@@ -26,7 +26,7 @@ public class LeaderboardButton extends GameButton {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (GameStateManager.getInstance().getGameState() != GameState.OVER) {
+        if (GameManager.getInstance().getGameState() != GameState.OVER) {
             remove();
         }
     }

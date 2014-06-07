@@ -2,16 +2,16 @@ package com.gamestudio24.cityescape.utils;
 
 import com.gamestudio24.cityescape.enums.GameState;
 
-public class GameStateManager {
-    private static GameStateManager ourInstance = new GameStateManager();
+public class GameManager {
+    private static GameManager ourInstance = new GameManager();
 
     private GameState gameState;
 
-    public static GameStateManager getInstance() {
+    public static GameManager getInstance() {
         return ourInstance;
     }
 
-    private GameStateManager() {
+    private GameManager() {
         gameState = GameState.RUNNING;
     }
 

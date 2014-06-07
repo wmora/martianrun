@@ -3,7 +3,7 @@ package com.gamestudio24.cityescape.actors.menu;
 import com.badlogic.gdx.math.Rectangle;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.Constants;
-import com.gamestudio24.cityescape.utils.GameStateManager;
+import com.gamestudio24.cityescape.utils.GameManager;
 
 public class AboutButton extends GameButton {
 
@@ -20,7 +20,7 @@ public class AboutButton extends GameButton {
 
     @Override
     protected String getRegionName() {
-        return GameStateManager.getInstance().getGameState() == GameState.ABOUT ? Constants.CLOSE_REGION_NAME :
+        return GameManager.getInstance().getGameState() == GameState.ABOUT ? Constants.CLOSE_REGION_NAME :
                 Constants.ABOUT_REGION_NAME;
     }
 

@@ -14,7 +14,7 @@ import com.gamestudio24.cityescape.actors.menu.*;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.BodyUtils;
 import com.gamestudio24.cityescape.utils.Constants;
-import com.gamestudio24.cityescape.utils.GameStateManager;
+import com.gamestudio24.cityescape.utils.GameManager;
 import com.gamestudio24.cityescape.utils.WorldUtils;
 
 public class GameStage extends Stage implements ContactListener {
@@ -187,7 +187,7 @@ public class GameStage extends Stage implements ContactListener {
     public void act(float delta) {
         super.act(delta);
 
-        if (GameStateManager.getInstance().getGameState() == GameState.PAUSED) return;
+        if (GameManager.getInstance().getGameState() == GameState.PAUSED) return;
 
         Array<Body> bodies = new Array<Body>(world.getBodyCount());
         world.getBodies(bodies);
@@ -233,7 +233,7 @@ public class GameStage extends Stage implements ContactListener {
             return super.touchDown(x, y, pointer, button);
         }
 
-        if (GameStateManager.getInstance().getGameState() != GameState.RUNNING) {
+        if (GameManager.getInstance().getGameState() != GameState.RUNNING) {
             return super.touchDown(x, y, pointer, button);
         }
 
@@ -249,7 +249,7 @@ public class GameStage extends Stage implements ContactListener {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
-        if (GameStateManager.getInstance().getGameState() != GameState.RUNNING) {
+        if (GameManager.getInstance().getGameState() != GameState.RUNNING) {
             return super.touchUp(screenX, screenY, pointer, button);
         }
 
@@ -263,7 +263,7 @@ public class GameStage extends Stage implements ContactListener {
     private boolean menuControlTouched(float x, float y) {
         boolean touched = false;
 
-        switch (GameStateManager.getInstance().getGameState()) {
+        switch (GameManager.getInstance().getGameState()) {
             case OVER:
                 touched = startButton.getBounds().contains(x, y) || leaderboardButton.getBounds().contains(x, y)
                         || aboutButton.getBounds().contains(x, y);
@@ -370,7 +370,7 @@ public class GameStage extends Stage implements ContactListener {
 
         @Override
         public void onAbout() {
-            if (GameStateManager.getInstance().getGameState() == GameState.OVER ) {
+            if (GameManager.getInstance().getGameState() == GameState.OVER ) {
                 onGameAbout();
             } else {
                 clear();
@@ -383,20 +383,20 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void onGamePaused() {
-        GameStateManager.getInstance().setGameState(GameState.PAUSED);
+        GameManager.getInstance().setGameState(GameState.PAUSED);
     }
 
     private void onGameResumed() {
-        GameStateManager.getInstance().setGameState(GameState.RUNNING);
+        GameManager.getInstance().setGameState(GameState.RUNNING);
     }
 
     private void onGameOver() {
-        GameStateManager.getInstance().setGameState(GameState.OVER);
+        GameManager.getInstance().setGameState(GameState.OVER);
         setUpMainMenu();
     }
 
     private void onGameAbout() {
-        GameStateManager.getInstance().setGameState(GameState.ABOUT);
+        GameManager.getInstance().setGameState(GameState.ABOUT);
         clear();
         setUpStageBase();
         setUpGameLabel();

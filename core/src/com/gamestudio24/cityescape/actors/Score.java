@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.Constants;
-import com.gamestudio24.cityescape.utils.GameStateManager;
+import com.gamestudio24.cityescape.utils.GameManager;
 
 public class Score extends Actor {
 
@@ -38,7 +38,7 @@ public class Score extends Actor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (GameStateManager.getInstance().getGameState() != GameState.RUNNING) {
+        if (GameManager.getInstance().getGameState() != GameState.RUNNING) {
             return;
         }
         score += multiplier * delta;
