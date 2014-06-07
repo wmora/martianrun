@@ -320,6 +320,7 @@ public class GameStage extends Stage implements ContactListener {
             if (!adDisplayed) {
                 displayAd();
             }
+            GameManager.getInstance().submitScore(score.getScore());
             onGameOver();
         } else if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsGround(b)) ||
                 (BodyUtils.bodyIsGround(a) && BodyUtils.bodyIsRunner(b))) {
