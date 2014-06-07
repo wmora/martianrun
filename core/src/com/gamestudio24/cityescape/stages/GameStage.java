@@ -13,10 +13,7 @@ import com.gamestudio24.cityescape.actors.*;
 import com.gamestudio24.cityescape.actors.menu.*;
 import com.gamestudio24.cityescape.enums.Difficulty;
 import com.gamestudio24.cityescape.enums.GameState;
-import com.gamestudio24.cityescape.utils.BodyUtils;
-import com.gamestudio24.cityescape.utils.Constants;
-import com.gamestudio24.cityescape.utils.GameManager;
-import com.gamestudio24.cityescape.utils.WorldUtils;
+import com.gamestudio24.cityescape.utils.*;
 
 public class GameStage extends Stage implements ContactListener {
 
@@ -44,8 +41,6 @@ public class GameStage extends Stage implements ContactListener {
 
     private Score score;
     private float totalTimePassed;
-
-    private boolean adDisplayed;
 
     private Vector3 touchPoint;
 
@@ -88,28 +83,28 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpSound() {
-        Rectangle soundButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 14 / 20,
+        Rectangle soundButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 13 / 20,
                 getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
         soundButton = new SoundButton(soundButtonBounds);
         addActor(soundButton);
     }
 
     private void setUpMusic() {
-        Rectangle musicButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 17 / 20,
+        Rectangle musicButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 4 / 5,
                 getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
         musicButton = new MusicButton(musicButtonBounds);
         addActor(musicButton);
     }
 
     private void setUpScore() {
-        Rectangle scoreBounds = new Rectangle(getCamera().viewportWidth * 47 / 64, getCamera().viewportHeight * 59 / 64,
+        Rectangle scoreBounds = new Rectangle(getCamera().viewportWidth * 47 / 64, getCamera().viewportHeight * 57 / 64,
                 getCamera().viewportWidth / 4, getCamera().viewportHeight / 8);
         score = new Score(scoreBounds);
         addActor(score);
     }
 
     private void setUpPause() {
-        Rectangle pauseButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 11 / 20,
+        Rectangle pauseButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 1 / 2,
                 getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
         pauseButton = new PauseButton(pauseButtonBounds, new GamePauseButtonListener());
         addActor(pauseButton);
@@ -140,7 +135,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private void setUpAbout() {
         Rectangle aboutButtonBounds = new Rectangle(getCamera().viewportWidth * 23 / 25,
-                getCamera().viewportHeight * 14 / 20, getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+                getCamera().viewportHeight * 13 / 20, getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
         aboutButton = new AboutButton(aboutButtonBounds, new GameAboutButtonListener());
         addActor(aboutButton);
     }
@@ -317,9 +312,7 @@ public class GameStage extends Stage implements ContactListener {
                 return;
             }
             runner.hit();
-            if (!adDisplayed) {
-                displayAd();
-            }
+            displayAd();
             GameManager.getInstance().submitScore(score.getScore());
             onGameOver();
         } else if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsGround(b)) ||
@@ -346,22 +339,13 @@ public class GameStage extends Stage implements ContactListener {
             runner.onDifficultyChange(GameManager.getInstance().getDifficulty());
             score.setMultiplier(GameManager.getInstance().getDifficulty().getScoreMultiplier());
 
-            if (!adDisplayed) {
-                displayAd();
-            }
-
+            displayAd();
         }
 
     }
 
     private void displayAd() {
         GameManager.getInstance().displayAd();
-        adDisplayed = true;
-    }
-
-    private void hideAd() {
-        GameManager.getInstance().hideAd();
-        adDisplayed = false;
     }
 
     @Override
@@ -419,16 +403,13 @@ public class GameStage extends Stage implements ContactListener {
 
         @Override
         public void onAbout() {
-            if (GameManager.getInstance().getGameState() == GameState.OVER ) {
+            if (GameManager.getInstance().getGameState() == GameState.OVER) {
                 onGameAbout();
             } else {
                 clear();
                 setUpStageBase();
                 setUpGameLabel();
                 onGameOver();
-                if (!adDisplayed) {
-                    displayAd();
-                }
             }
         }
 
@@ -458,4 +439,9 @@ public class GameStage extends Stage implements ContactListener {
         setUpAbout();
     }
 
+    @Override
+    public void dispose() {
+        super.dispose();
+        AudioUtils.getInstance().disposeMusic();
+    }
 }
