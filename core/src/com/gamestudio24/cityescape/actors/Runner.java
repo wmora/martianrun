@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gamestudio24.cityescape.box2d.RunnerUserData;
+import com.gamestudio24.cityescape.enums.Difficulty;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.AudioUtils;
 import com.gamestudio24.cityescape.utils.Constants;
@@ -115,6 +116,16 @@ public class Runner extends GameActor {
 
     public boolean isHit() {
         return hit;
+    }
+
+    public void onDifficultyChange(Difficulty newDifficulty) {
+        setGravityScale(newDifficulty.getRunnerGravityScale());
+        getUserData().setJumpingLinearImpulse(newDifficulty.getRunnerJumpingLinearImpulse());
+    }
+
+    public void setGravityScale(float gravityScale) {
+        body.setGravityScale(gravityScale);
+        body.resetMassData();
     }
 
 }

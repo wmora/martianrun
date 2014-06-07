@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.gamestudio24.cityescape.actors.*;
 import com.gamestudio24.cityescape.actors.menu.*;
+import com.gamestudio24.cityescape.enums.Difficulty;
 import com.gamestudio24.cityescape.enums.GameState;
 import com.gamestudio24.cityescape.utils.BodyUtils;
 import com.gamestudio24.cityescape.utils.Constants;
@@ -42,6 +43,7 @@ public class GameStage extends Stage implements ContactListener {
     private AboutButton aboutButton;
 
     private Score score;
+    private float totalTimePassed;
 
     private Vector3 touchPoint;
 
@@ -189,6 +191,11 @@ public class GameStage extends Stage implements ContactListener {
 
         if (GameManager.getInstance().getGameState() == GameState.PAUSED) return;
 
+        if (GameManager.getInstance().getGameState() == GameState.RUNNING) {
+            totalTimePassed += delta;
+            updateDifficulty();
+        }
+
         Array<Body> bodies = new Array<Body>(world.getBodyCount());
         world.getBodies(bodies);
 
@@ -219,6 +226,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private void createEnemy() {
         Enemy enemy = new Enemy(WorldUtils.createEnemy(world));
+        enemy.getUserData().setLinearVelocity(GameManager.getInstance().getDifficulty().getEnemyLinearVelocity());
         addActor(enemy);
     }
 
@@ -315,6 +323,27 @@ public class GameStage extends Stage implements ContactListener {
 
     }
 
+    private void updateDifficulty() {
+
+        if (GameManager.getInstance().isMaxDifficulty()) {
+            return;
+        }
+
+        Difficulty currentDifficulty = GameManager.getInstance().getDifficulty();
+
+        if (totalTimePassed > GameManager.getInstance().getDifficulty().getLevel() * 5) {
+
+            int nextDifficulty = currentDifficulty.getLevel() + 1;
+            String difficultyName = "DIFFICULTY_" + nextDifficulty;
+            GameManager.getInstance().setDifficulty(Difficulty.valueOf(difficultyName));
+
+            runner.onDifficultyChange(GameManager.getInstance().getDifficulty());
+            score.setMultiplier(GameManager.getInstance().getDifficulty().getScoreMultiplier());
+
+        }
+
+    }
+
     @Override
     public void endContact(Contact contact) {
 
@@ -392,6 +421,8 @@ public class GameStage extends Stage implements ContactListener {
 
     private void onGameOver() {
         GameManager.getInstance().setGameState(GameState.OVER);
+        GameManager.getInstance().resetDifficulty();
+        totalTimePassed = 0;
         setUpMainMenu();
     }
 
