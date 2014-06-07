@@ -3,11 +3,12 @@ package com.gamestudio24.cityescape.utils;
 import com.gamestudio24.cityescape.enums.Difficulty;
 import com.gamestudio24.cityescape.enums.GameState;
 
-public class GameManager {
+public class GameManager implements GameEventListener {
     private static GameManager ourInstance = new GameManager();
 
     private GameState gameState;
     private Difficulty difficulty;
+    private GameEventListener gameEventListener;
 
     public static GameManager getInstance() {
         return ourInstance;
@@ -39,5 +40,34 @@ public class GameManager {
 
     public void resetDifficulty() {
         setDifficulty(Difficulty.values()[0]);
+    }
+
+    public void setGameEventListener(GameEventListener gameEventListener) {
+        this.gameEventListener = gameEventListener;
+    }
+
+    @Override
+    public void displayAd() {
+        gameEventListener.displayAd();
+    }
+
+    @Override
+    public void hideAd() {
+        gameEventListener.hideAd();
+    }
+
+    @Override
+    public void submitScore(int score) {
+        gameEventListener.submitScore(score);
+    }
+
+    @Override
+    public void displayLeaderboard() {
+        gameEventListener.displayLeaderboard();
+    }
+
+    @Override
+    public void trackEvent(String category, String action, String label, String value) {
+        gameEventListener.trackEvent(category, action, label, value);
     }
 }
