@@ -11,6 +11,7 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.bugsense.trace.BugSenseHandler;
 import com.gamestudio24.cityescape.CityEscape;
 import com.gamestudio24.cityescape.utils.GameEventListener;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -58,6 +59,20 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
         gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
         gameHelper.setup(this);
         gameHelper.setMaxAutoSignInAttempts(0);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        gameHelper.onStart(this);
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        gameHelper.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
     }
 
     @Override
