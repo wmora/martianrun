@@ -14,6 +14,22 @@ android {
 
         instrumentTest.setRoot('tests')
     }
+
+    signingConfigs {
+        release {
+            storeFile file("gamestudio24.keystore")
+            storePassword "31072010nmldm24051985nmldm06011988nmldm"
+            keyAlias "wilmor24"
+            keyPassword "31072010nmldm24051985nmldm06011988nmldm"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
 }
 
 // needed to add JNI shared libraries to APK when compiling on CLI
