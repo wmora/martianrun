@@ -1,6 +1,6 @@
 # CityEscape
 
-A 2D Running Game Built with [libGDX](libgdx.badlogicgames.com)
+A 2D Running Game Built with [libGDX](http://libgdx.badlogicgames.com)
 
 You can find a tutorial of how it was implemented here:
 
