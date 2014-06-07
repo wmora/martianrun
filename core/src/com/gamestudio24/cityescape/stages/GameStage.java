@@ -410,7 +410,7 @@ public class GameStage extends Stage implements ContactListener {
 
         @Override
         public void onLeaderboard() {
-            Gdx.app.log(getClass().getSimpleName(), "Launch leaderboard");
+            GameManager.getInstance().displayLeaderboard();
         }
 
     }
@@ -421,9 +421,6 @@ public class GameStage extends Stage implements ContactListener {
         public void onAbout() {
             if (GameManager.getInstance().getGameState() == GameState.OVER ) {
                 onGameAbout();
-                if (adDisplayed) {
-                    hideAd();
-                }
             } else {
                 clear();
                 setUpStageBase();
