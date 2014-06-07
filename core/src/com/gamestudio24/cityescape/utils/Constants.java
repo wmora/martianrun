@@ -39,10 +39,10 @@ public class Constants {
     public static final String BACKGROUND_IMAGE_PATH = "background.png";
     public static final String GROUND_IMAGE_PATH = "ground.png";
     public static final String SPRITES_ATLAS_PATH = "sprites.txt";
-    public static final String[] RUNNER_RUNNING_REGION_NAMES = new String[] {"alienGreen_run1", "alienGreen_run2"};
-    public static final String RUNNER_DODGING_REGION_NAME = "alienGreen_dodge";
-    public static final String RUNNER_HIT_REGION_NAME = "alienGreen_hit";
-    public static final String RUNNER_JUMPING_REGION_NAME = "alienGreen_jump";
+    public static final String[] RUNNER_RUNNING_REGION_NAMES = new String[] {"alienBeige_run1", "alienBeige_run2"};
+    public static final String RUNNER_DODGING_REGION_NAME = "alienBeige_dodge";
+    public static final String RUNNER_HIT_REGION_NAME = "alienBeige_hit";
+    public static final String RUNNER_JUMPING_REGION_NAME = "alienBeige_jump";
 
     public static final String[] RUNNING_SMALL_ENEMY_REGION_NAMES = new String[] {"ladyBug_walk1", "ladyBug_walk2"};
     public static final String[] RUNNING_LONG_ENEMY_REGION_NAMES = new String[] {"barnacle_bite1", "barnacle_bite2"};

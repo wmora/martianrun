@@ -9,37 +9,37 @@ about
   orig: 48, 48
   offset: 0, 0
   index: -1
-alienGreen_dodge
+alienBeige_dodge
   rotate: false
-  xy: 212, 112
-  size: 69, 71
-  orig: 69, 71
+  xy: 70, 112
+  size: 67, 72
+  orig: 67, 72
   offset: 0, 0
   index: -1
-alienGreen_hit
+alienBeige_hit
   rotate: false
-  xy: 141, 112
-  size: 69, 92
-  orig: 69, 92
+  xy: 139, 112
+  size: 67, 92
+  orig: 67, 92
   offset: 0, 0
   index: -1
-alienGreen_jump
+alienBeige_jump
   rotate: false
   xy: 2, 112
-  size: 67, 93
-  orig: 67, 93
+  size: 66, 93
+  orig: 66, 93
   offset: 0, 0
   index: -1
-alienGreen_run1
+alienBeige_run1
   rotate: false
-  xy: 71, 112
+  xy: 208, 112
   size: 68, 93
   orig: 68, 93
   offset: 0, 0
   index: -1
-alienGreen_run2
+alienBeige_run2
   rotate: false
-  xy: 283, 112
+  xy: 278, 112
   size: 70, 96
   orig: 70, 96
   offset: 0, 0
@@ -165,14 +165,14 @@ sound_on
   index: -1
 spider_walk1
   rotate: false
-  xy: 355, 112
+  xy: 350, 112
   size: 72, 51
   orig: 72, 51
   offset: 0, 0
   index: -1
 spider_walk2
   rotate: false
-  xy: 429, 112
+  xy: 424, 112
   size: 77, 53
   orig: 77, 53
   offset: 0, 0
