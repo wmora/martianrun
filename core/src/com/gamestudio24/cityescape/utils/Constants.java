@@ -62,5 +62,5 @@ public class Constants {
     public static final String RUNNER_HIT_SOUND = "hit.wav";
     public static final String GAME_MUSIC = "fun_in_a_bottle.mp3";
 
-    public static final String FONT_NAME = "opensans_bold.ttf";
+    public static final String FONT_NAME = "roboto_bold.ttf";
 }
