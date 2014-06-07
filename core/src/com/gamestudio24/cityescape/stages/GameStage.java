@@ -39,6 +39,7 @@ public class GameStage extends Stage implements ContactListener {
     private PauseButton pauseButton;
     private StartButton startButton;
     private LeaderboardButton leaderboardButton;
+    private AboutButton aboutButton;
 
     private Score score;
 
@@ -110,6 +111,7 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpMainMenu() {
         setUpStart();
         setUpLeaderboard();
+        setUpAbout();
     }
 
     private void setUpStart() {
@@ -124,6 +126,13 @@ public class GameStage extends Stage implements ContactListener {
                 getCamera().viewportHeight / 4, getCamera().viewportWidth / 4, getCamera().viewportWidth / 4);
         leaderboardButton = new LeaderboardButton(leaderboardButtonBounds, new GameLeaderboardButtonListener());
         addActor(leaderboardButton);
+    }
+
+    private void setUpAbout() {
+        Rectangle aboutButtonBounds = new Rectangle(getCamera().viewportWidth * 23 / 25,
+                getCamera().viewportHeight * 14 / 20, getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+        aboutButton = new AboutButton(aboutButtonBounds, new GameAboutButtonListener());
+        addActor(aboutButton);
     }
 
     private void setUpWorld() {
@@ -250,7 +259,8 @@ public class GameStage extends Stage implements ContactListener {
 
         switch (GameStateManager.getInstance().getGameState()) {
             case OVER:
-                touched = startButton.getBounds().contains(x, y) || leaderboardButton.getBounds().contains(x, y);
+                touched = startButton.getBounds().contains(x, y) || leaderboardButton.getBounds().contains(x, y)
+                        || aboutButton.getBounds().contains(x, y);
                 break;
             case RUNNING:
             case PAUSED:
@@ -346,6 +356,15 @@ public class GameStage extends Stage implements ContactListener {
         @Override
         public void onLeaderboard() {
             Gdx.app.log(getClass().getSimpleName(), "Launch leaderboard");
+        }
+
+    }
+
+    private class GameAboutButtonListener implements AboutButton.AboutButtonListener {
+
+        @Override
+        public void onAbout() {
+            Gdx.app.log(getClass().getSimpleName(), "About page");
         }
 
     }

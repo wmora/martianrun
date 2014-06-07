@@ -2,121 +2,128 @@ sprites.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+about
+  rotate: false
+  xy: 202, 2
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
 alienGreen_dodge
   rotate: false
-  xy: 212, 109
+  xy: 212, 112
   size: 69, 71
   orig: 69, 71
   offset: 0, 0
   index: -1
 alienGreen_hit
   rotate: false
-  xy: 141, 109
+  xy: 141, 112
   size: 69, 92
   orig: 69, 92
   offset: 0, 0
   index: -1
 alienGreen_jump
   rotate: false
-  xy: 2, 109
+  xy: 2, 112
   size: 67, 93
   orig: 67, 93
   offset: 0, 0
   index: -1
 alienGreen_run1
   rotate: false
-  xy: 71, 109
+  xy: 71, 112
   size: 68, 93
   orig: 68, 93
   offset: 0, 0
   index: -1
 alienGreen_run2
   rotate: false
-  xy: 283, 109
+  xy: 283, 112
   size: 70, 96
   orig: 70, 96
   offset: 0, 0
   index: -1
 barnacle_bite1
   rotate: false
-  xy: 355, 2
+  xy: 405, 2
   size: 51, 57
   orig: 51, 57
   offset: 0, 0
   index: -1
 barnacle_bite2
   rotate: false
-  xy: 302, 2
+  xy: 352, 2
   size: 51, 58
   orig: 51, 58
   offset: 0, 0
   index: -1
 bee_fly1
   rotate: false
-  xy: 408, 2
+  xy: 2, 62
   size: 56, 48
   orig: 56, 48
   offset: 0, 0
   index: -1
 bee_fly2
   rotate: false
-  xy: 185, 62
+  xy: 180, 62
   size: 61, 42
   orig: 61, 42
   offset: 0, 0
   index: -1
 fly_fly1
   rotate: false
-  xy: 2, 62
+  xy: 60, 62
   size: 57, 45
   orig: 57, 45
   offset: 0, 0
   index: -1
 fly_fly2
   rotate: false
-  xy: 378, 62
+  xy: 436, 62
   size: 65, 39
   orig: 65, 39
   offset: 0, 0
   index: -1
 ladyBug_walk1
   rotate: false
-  xy: 122, 62
+  xy: 243, 62
   size: 61, 34
   orig: 61, 34
   offset: 0, 0
   index: -1
 ladyBug_walk2
   rotate: false
-  xy: 61, 62
+  xy: 119, 62
   size: 59, 42
   orig: 59, 42
   offset: 0, 0
   index: -1
 leaderboard
   rotate: false
-  xy: 204, 207
+  xy: 204, 210
   size: 201, 201
   orig: 201, 201
   offset: 0, 0
   index: -1
 music_off
   rotate: false
-  xy: 152, 2
+  xy: 2, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 music_on
   rotate: false
-  xy: 252, 2
+  xy: 152, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 2, 2
+  xy: 52, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
@@ -130,49 +137,49 @@ play
   index: -1
 play_big
   rotate: false
-  xy: 2, 207
+  xy: 2, 210
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 sound_off
   rotate: false
-  xy: 52, 2
+  xy: 252, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 sound_on
   rotate: false
-  xy: 202, 2
+  xy: 302, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 spider_walk1
   rotate: false
-  xy: 355, 109
+  xy: 355, 112
   size: 72, 51
   orig: 72, 51
   offset: 0, 0
   index: -1
 spider_walk2
   rotate: false
-  xy: 429, 109
+  xy: 429, 112
   size: 77, 53
   orig: 77, 53
   offset: 0, 0
   index: -1
 worm_walk1
   rotate: false
-  xy: 248, 62
+  xy: 306, 62
   size: 63, 23
   orig: 63, 23
   offset: 0, 0
   index: -1
 worm_walk2
   rotate: false
-  xy: 313, 62
+  xy: 371, 62
   size: 63, 23
   orig: 63, 23
   offset: 0, 0

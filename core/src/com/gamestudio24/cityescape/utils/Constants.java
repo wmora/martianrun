@@ -59,6 +59,7 @@ public class Constants {
     public static final String PLAY_REGION_NAME = "play";
     public static final String BIG_PLAY_REGION_NAME = "play_big";
     public static final String LEADERBOARD_REGION_NAME = "leaderboard";
+    public static final String ABOUT_REGION_NAME = "about";
 
     public static final String RUNNER_JUMPING_SOUND = "jump.wav";
     public static final String RUNNER_HIT_SOUND = "hit.wav";
