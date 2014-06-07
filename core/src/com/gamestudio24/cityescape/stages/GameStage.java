@@ -68,6 +68,12 @@ public class GameStage extends Stage implements ContactListener {
         addActor(new GameLabel(gameLabelBounds));
     }
 
+    private void setUpAboutText() {
+        Rectangle gameLabelBounds = new Rectangle(0, getCamera().viewportHeight * 5 / 8, getCamera().viewportWidth,
+                getCamera().viewportHeight / 4);
+        addActor(new AboutLabel(gameLabelBounds));
+    }
+
     /**
      * These menu buttons are always displayed
      */
@@ -364,7 +370,14 @@ public class GameStage extends Stage implements ContactListener {
 
         @Override
         public void onAbout() {
-            Gdx.app.log(getClass().getSimpleName(), "About page");
+            if (GameStateManager.getInstance().getGameState() == GameState.OVER ) {
+                onGameAbout();
+            } else {
+                clear();
+                setUpStageBase();
+                setUpGameLabel();
+                onGameOver();
+            }
         }
 
     }
@@ -380,6 +393,15 @@ public class GameStage extends Stage implements ContactListener {
     private void onGameOver() {
         GameStateManager.getInstance().setGameState(GameState.OVER);
         setUpMainMenu();
+    }
+
+    private void onGameAbout() {
+        GameStateManager.getInstance().setGameState(GameState.ABOUT);
+        clear();
+        setUpStageBase();
+        setUpGameLabel();
+        setUpAboutText();
+        setUpAbout();
     }
 
 }

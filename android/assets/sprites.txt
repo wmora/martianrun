@@ -4,7 +4,7 @@ filter: Linear,Linear
 repeat: none
 about
   rotate: false
-  xy: 202, 2
+  xy: 252, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
@@ -46,14 +46,14 @@ alienGreen_run2
   index: -1
 barnacle_bite1
   rotate: false
-  xy: 405, 2
+  xy: 402, 2
   size: 51, 57
   orig: 51, 57
   offset: 0, 0
   index: -1
 barnacle_bite2
   rotate: false
-  xy: 352, 2
+  xy: 455, 2
   size: 51, 58
   orig: 51, 58
   offset: 0, 0
@@ -67,9 +67,16 @@ bee_fly1
   index: -1
 bee_fly2
   rotate: false
-  xy: 180, 62
+  xy: 243, 62
   size: 61, 42
   orig: 61, 42
+  offset: 0, 0
+  index: -1
+close
+  rotate: false
+  xy: 2, 2
+  size: 48, 48
+  orig: 48, 48
   offset: 0, 0
   index: -1
 fly_fly1
@@ -88,7 +95,7 @@ fly_fly2
   index: -1
 ladyBug_walk1
   rotate: false
-  xy: 243, 62
+  xy: 180, 62
   size: 61, 34
   orig: 61, 34
   offset: 0, 0
@@ -109,28 +116,28 @@ leaderboard
   index: -1
 music_off
   rotate: false
-  xy: 2, 2
+  xy: 102, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 music_on
   rotate: false
-  xy: 152, 2
+  xy: 52, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 52, 2
+  xy: 152, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 play
   rotate: false
-  xy: 102, 2
+  xy: 202, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
@@ -144,14 +151,14 @@ play_big
   index: -1
 sound_off
   rotate: false
-  xy: 252, 2
+  xy: 302, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 sound_on
   rotate: false
-  xy: 302, 2
+  xy: 352, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0

@@ -60,10 +60,15 @@ public class Constants {
     public static final String BIG_PLAY_REGION_NAME = "play_big";
     public static final String LEADERBOARD_REGION_NAME = "leaderboard";
     public static final String ABOUT_REGION_NAME = "about";
+    public static final String CLOSE_REGION_NAME = "close";
 
     public static final String RUNNER_JUMPING_SOUND = "jump.wav";
     public static final String RUNNER_HIT_SOUND = "hit.wav";
     public static final String GAME_MUSIC = "fun_in_a_bottle.mp3";
 
     public static final String FONT_NAME = "roboto_bold.ttf";
+
+    public static final String ABOUT_TEXT = "Developed by: @gamestudio24\nPowered by: @libgdx\nGraphics: @kenneywings"
+            + "\nMusic: @incompetech";
+
 }
