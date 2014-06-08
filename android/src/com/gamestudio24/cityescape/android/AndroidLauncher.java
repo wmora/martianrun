@@ -11,10 +11,10 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.bugsense.trace.BugSenseHandler;
 import com.gamestudio24.cityescape.CityEscape;
 import com.gamestudio24.cityescape.utils.GameEventListener;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.games.Games;
 import com.google.games.basegameutils.GameHelper;
 
@@ -22,10 +22,14 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
 
     private AdView adView;
 
+    private static String SAVED_LEADERBOARD_REQUESTED = "SAVED_LEADERBOARD_REQUESTED";
+
     private static final String AD_UNIT_ID = "ca-app-pub-9726805752162406/6658558541";
     private static final String HIGH_SCORES_LEADERBOARD_ID = "CggIpqrhukgQAhAA";
     private static final String BUGSENSE_API_KEY = "3e9f5c76";
     private GameHelper gameHelper;
+
+    private boolean mLeaderboardRequested;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,20 +69,32 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     protected void onStart() {
         super.onStart();
         gameHelper.onStart(this);
-        EasyTracker.getInstance(this).activityStart(this);
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         gameHelper.onStop();
-        EasyTracker.getInstance(this).activityStop(this);
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         gameHelper.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(SAVED_LEADERBOARD_REQUESTED, mLeaderboardRequested);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mLeaderboardRequested = savedInstanceState.getBoolean(SAVED_LEADERBOARD_REQUESTED, false);
     }
 
     private AdRequest createAdRequest() {
@@ -109,12 +125,16 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     @Override
     public void onSignInFailed() {
         // handle sign-in failure (e.g. show Sign In button)
+        mLeaderboardRequested = false;
     }
 
     @Override
     public void onSignInSucceeded() {
         // handle sign-in success
-        displayLeaderboard();
+        if (mLeaderboardRequested) {
+            displayLeaderboard();
+            mLeaderboardRequested = false;
+        }
     }
 
     @Override
@@ -141,6 +161,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
                     HIGH_SCORES_LEADERBOARD_ID), 24);
         } else {
             gameHelper.beginUserInitiatedSignIn();
+            mLeaderboardRequested = true;
         }
     }
 

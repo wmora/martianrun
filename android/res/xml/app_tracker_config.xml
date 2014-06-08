@@ -11,7 +11,7 @@
     <bool name="ga_reportUncaughtExceptions">true</bool>
 
     <screenName name="com.gamestudio24.cityescape.android.AndroidLauncher">
-        Game screen
+        Game Screen
     </screenName>
 
 </resources>
