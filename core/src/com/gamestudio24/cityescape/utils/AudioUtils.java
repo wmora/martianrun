@@ -10,7 +10,6 @@ public class AudioUtils {
     private static AudioUtils ourInstance = new AudioUtils();
     private static Music music;
 
-    private static final String PREFERENCES_NAME = "preferences";
     private static final String MUSIC_ON_PREFERENCE = "music_on";
     private static final String SOUND_ON_PREFERENCE = "sound_on";
 
@@ -26,7 +25,7 @@ public class AudioUtils {
     }
 
     private Preferences getPreferences() {
-        return Gdx.app.getPreferences(PREFERENCES_NAME);
+        return Gdx.app.getPreferences(GameManager.PREFERENCES_NAME);
     }
 
     public void init() {

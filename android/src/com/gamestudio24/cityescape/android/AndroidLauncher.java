@@ -11,6 +11,7 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.bugsense.trace.BugSenseHandler;
 import com.gamestudio24.cityescape.CityEscape;
 import com.gamestudio24.cityescape.utils.GameEventListener;
+import com.gamestudio24.cityescape.utils.GameManager;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -131,6 +132,10 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     @Override
     public void onSignInSucceeded() {
         // handle sign-in success
+        if (GameManager.getInstance().hasSavedMaxScore()) {
+            GameManager.getInstance().submitSavedMaxScore();
+        }
+
         if (mLeaderboardRequested) {
             displayLeaderboard();
             mLeaderboardRequested = false;
@@ -151,6 +156,8 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     public void submitScore(int score) {
         if (gameHelper.isSignedIn()) {
             Games.Leaderboards.submitScore(gameHelper.getApiClient(), HIGH_SCORES_LEADERBOARD_ID, score);
+        } else {
+            GameManager.getInstance().saveScore(score);
         }
     }
 
