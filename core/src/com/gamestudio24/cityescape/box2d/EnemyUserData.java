@@ -7,13 +7,13 @@ import com.gamestudio24.cityescape.utils.Constants;
 public class EnemyUserData extends UserData {
 
     private Vector2 linearVelocity;
-    private String[] textureRegions;
+    private String animationAssetId;
 
-    public EnemyUserData(float width, float height, String[] textureRegions) {
+    public EnemyUserData(float width, float height, String animationAssetId) {
         super(width, height);
         userDataType = UserDataType.ENEMY;
         linearVelocity = Constants.ENEMY_LINEAR_VELOCITY;
-        this.textureRegions = textureRegions;
+        this.animationAssetId = animationAssetId;
     }
 
     public void setLinearVelocity(Vector2 linearVelocity) {
@@ -24,7 +24,8 @@ public class EnemyUserData extends UserData {
         return linearVelocity;
     }
 
-    public String[] getTextureRegions() {
-        return textureRegions;
+    public String getAnimationAssetId() {
+        return animationAssetId;
     }
+
 }

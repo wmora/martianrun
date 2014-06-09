@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gamestudio24.cityescape.box2d.RunnerUserData;
 import com.gamestudio24.cityescape.enums.Difficulty;
 import com.gamestudio24.cityescape.enums.GameState;
+import com.gamestudio24.cityescape.utils.AssetsManager;
 import com.gamestudio24.cityescape.utils.AudioUtils;
 import com.gamestudio24.cityescape.utils.Constants;
 import com.gamestudio24.cityescape.utils.GameManager;
@@ -30,17 +30,11 @@ public class Runner extends GameActor {
 
     public Runner(Body body) {
         super(body);
-        TextureAtlas textureAtlas = new TextureAtlas(Constants.SPRITES_ATLAS_PATH);
-        TextureRegion[] runningFrames = new TextureRegion[Constants.RUNNER_RUNNING_REGION_NAMES.length];
-        for (int i = 0; i < Constants.RUNNER_RUNNING_REGION_NAMES.length; i++) {
-            String path = Constants.RUNNER_RUNNING_REGION_NAMES[i];
-            runningFrames[i] = textureAtlas.findRegion(path);
-        }
-        runningAnimation = new Animation(0.1f, runningFrames);
+        runningAnimation = AssetsManager.getAnimation(Constants.RUNNER_RUNNING_ASSETS_ID);
         stateTime = 0f;
-        jumpingTexture = textureAtlas.findRegion(Constants.RUNNER_JUMPING_REGION_NAME);
-        dodgingTexture = textureAtlas.findRegion(Constants.RUNNER_DODGING_REGION_NAME);
-        hitTexture = textureAtlas.findRegion(Constants.RUNNER_HIT_REGION_NAME);
+        jumpingTexture = AssetsManager.getTextureRegion(Constants.RUNNER_JUMPING_ASSETS_ID);
+        dodgingTexture = AssetsManager.getTextureRegion(Constants.RUNNER_DODGING_ASSETS_ID);
+        hitTexture = AssetsManager.getTextureRegion(Constants.RUNNER_HIT_ASSETS_ID);
         jumpSound = AudioUtils.getInstance().createSound(Constants.RUNNER_JUMPING_SOUND);
         hitSound = AudioUtils.getInstance().createSound(Constants.RUNNER_HIT_SOUND);
     }

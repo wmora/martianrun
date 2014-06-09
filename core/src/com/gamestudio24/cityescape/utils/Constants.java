@@ -36,6 +36,19 @@ public class Constants {
     public static final float FLYING_ENEMY_Y = 3f;
     public static final Vector2 ENEMY_LINEAR_VELOCITY = new Vector2(-10f, 0);
 
+    public static final String BACKGROUND_ASSETS_ID = "background";
+    public static final String GROUND_ASSETS_ID = "ground";
+    public static final String RUNNER_RUNNING_ASSETS_ID = "runner_running";
+    public static final String RUNNER_DODGING_ASSETS_ID = "runner_dodging";
+    public static final String RUNNER_HIT_ASSETS_ID = "runner_hit";
+    public static final String RUNNER_JUMPING_ASSETS_ID = "runner_jumping";
+    public static final String RUNNING_SMALL_ENEMY_ASSETS_ID = "running_small_enemy";
+    public static final String RUNNING_LONG_ENEMY_ASSETS_ID = "running_long_enemy";
+    public static final String RUNNING_BIG_ENEMY_ASSETS_ID = "running_big_enemy";
+    public static final String RUNNING_WIDE_ENEMY_ASSETS_ID = "running_wide_enemy";
+    public static final String FLYING_SMALL_ENEMY_ASSETS_ID = "flying_small_enemy";
+    public static final String FLYING_WIDE_ENEMY_ASSETS_ID = "flying_wide_enemy";
+
     public static final String BACKGROUND_IMAGE_PATH = "background.png";
     public static final String GROUND_IMAGE_PATH = "ground.png";
     public static final String SPRITES_ATLAS_PATH = "sprites.txt";

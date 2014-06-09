@@ -1,12 +1,11 @@
 package com.gamestudio24.cityescape.actors.menu;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.gamestudio24.cityescape.utils.Constants;
+import com.gamestudio24.cityescape.utils.AssetsManager;
 
 public abstract class GameButton extends Button {
 
@@ -20,7 +19,7 @@ public abstract class GameButton extends Button {
         setHeight(bounds.height);
         setBounds(bounds.x, bounds.y, bounds.width, bounds.height);
         skin = new Skin();
-        skin.addRegions(new TextureAtlas(Constants.SPRITES_ATLAS_PATH));
+        skin.addRegions(AssetsManager.getTextureAtlas());
         loadTextureRegion();
         addListener(new ClickListener() {
             @Override

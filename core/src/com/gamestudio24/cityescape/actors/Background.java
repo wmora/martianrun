@@ -1,12 +1,11 @@
 package com.gamestudio24.cityescape.actors;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.gamestudio24.cityescape.enums.GameState;
+import com.gamestudio24.cityescape.utils.AssetsManager;
 import com.gamestudio24.cityescape.utils.Constants;
 import com.gamestudio24.cityescape.utils.GameManager;
 
@@ -18,7 +17,7 @@ public class Background extends Actor {
     private int speed = 100;
 
     public Background() {
-        textureRegion = new TextureRegion(new Texture(Gdx.files.internal(Constants.BACKGROUND_IMAGE_PATH)));
+        textureRegion = AssetsManager.getTextureRegion(Constants.BACKGROUND_ASSETS_ID);
         textureRegionBounds1 = new Rectangle(0 - Constants.APP_WIDTH / 2, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
         textureRegionBounds2 = new Rectangle(Constants.APP_WIDTH / 2, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
     }
