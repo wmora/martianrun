@@ -86,5 +86,6 @@ public class Constants {
             + "\nMusic: @kmacleod";
     public static final String SHARE_MESSAGE_PREFIX = "Check out " + GAME_NAME + " %s";
     public static final String SHARE_TITLE = "Share!";
+    public static final String PAUSED_LABEL = "Paused";
 
 }

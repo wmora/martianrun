@@ -168,6 +168,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private void setUpCharacters() {
         setUpRunner();
+        setUpPauseLabel();
         createEnemy();
     }
 
@@ -190,6 +191,12 @@ public class GameStage extends Stage implements ContactListener {
         screenLeftSide = new Rectangle(0, 0, getCamera().viewportWidth / 2, getCamera().viewportHeight);
         screenRightSide = new Rectangle(getCamera().viewportWidth / 2, 0, getCamera().viewportWidth / 2,
                 getCamera().viewportHeight);
+    }
+
+    private void setUpPauseLabel() {
+        Rectangle pauseLabelBounds = new Rectangle(0, getCamera().viewportHeight * 7 / 8, getCamera().viewportWidth,
+                getCamera().viewportHeight / 4);
+        addActor(new PausedLabel(pauseLabelBounds));
     }
 
     @Override
