@@ -38,6 +38,7 @@ public class GameStage extends Stage implements ContactListener {
     private StartButton startButton;
     private LeaderboardButton leaderboardButton;
     private AboutButton aboutButton;
+    private ShareButton shareButton;
 
     private Score score;
     private float totalTimePassed;
@@ -118,6 +119,7 @@ public class GameStage extends Stage implements ContactListener {
         setUpStart();
         setUpLeaderboard();
         setUpAbout();
+        setUpShare();
     }
 
     private void setUpStart() {
@@ -139,6 +141,13 @@ public class GameStage extends Stage implements ContactListener {
                 getCamera().viewportHeight * 13 / 20, getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
         aboutButton = new AboutButton(aboutButtonBounds, new GameAboutButtonListener());
         addActor(aboutButton);
+    }
+
+    private void setUpShare() {
+        Rectangle shareButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight / 2,
+                getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+        shareButton = new ShareButton(shareButtonBounds, new GameShareButtonListener());
+        addActor(shareButton);
     }
 
     private void setUpWorld() {
@@ -412,6 +421,15 @@ public class GameStage extends Stage implements ContactListener {
                 setUpGameLabel();
                 onGameOver();
             }
+        }
+
+    }
+
+    private class GameShareButtonListener implements ShareButton.ShareButtonListener {
+
+        @Override
+        public void onShare() {
+            GameManager.getInstance().share();
         }
 
     }

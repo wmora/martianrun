@@ -74,6 +74,7 @@ public class Constants {
     public static final String LEADERBOARD_REGION_NAME = "leaderboard";
     public static final String ABOUT_REGION_NAME = "about";
     public static final String CLOSE_REGION_NAME = "close";
+    public static final String SHARE_REGION_NAME = "share";
 
     public static final String RUNNER_JUMPING_SOUND = "jump.wav";
     public static final String RUNNER_HIT_SOUND = "hit.wav";
@@ -83,5 +84,7 @@ public class Constants {
 
     public static final String ABOUT_TEXT = "Developed by: @gamestudio24\nPowered by: @libgdx\nGraphics: @kenneywings"
             + "\nMusic: @kmacleod";
+    public static final String SHARE_MESSAGE_PREFIX = "Check out " + GAME_NAME + " %s";
+    public static final String SHARE_TITLE = "Share!";
 
 }

@@ -10,6 +10,7 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.bugsense.trace.BugSenseHandler;
 import com.gamestudio24.cityescape.CityEscape;
+import com.gamestudio24.cityescape.utils.Constants;
 import com.gamestudio24.cityescape.utils.GameEventListener;
 import com.gamestudio24.cityescape.utils.GameManager;
 import com.google.android.gms.ads.AdRequest;
@@ -174,6 +175,16 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     @Override
     public void trackEvent(String category, String action, String label, String value) {
         // TODO: Implement events
+    }
+
+    @Override
+    public void share() {
+        String url = String.format("http://play.google.com/store/apps/details?id=%s", getPackageName());
+        String message = String.format(Constants.SHARE_MESSAGE_PREFIX, url);
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.putExtra(Intent.EXTRA_TEXT, message);
+        startActivity(Intent.createChooser(share, Constants.SHARE_TITLE));
     }
 
 }

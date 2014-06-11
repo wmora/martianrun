@@ -12,4 +12,6 @@ public interface GameEventListener {
 
     public void trackEvent(String category, String action, String label, String value);
 
+    public void share();
+
 }

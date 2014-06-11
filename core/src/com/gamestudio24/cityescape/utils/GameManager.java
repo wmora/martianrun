@@ -76,6 +76,11 @@ public class GameManager implements GameEventListener {
         gameEventListener.trackEvent(category, action, label, value);
     }
 
+    @Override
+    public void share() {
+        gameEventListener.share();
+    }
+
     private Preferences getPreferences() {
         return Gdx.app.getPreferences(PREFERENCES_NAME);
     }

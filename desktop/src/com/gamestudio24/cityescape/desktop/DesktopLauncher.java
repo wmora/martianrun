@@ -38,6 +38,11 @@ public class DesktopLauncher {
                 Gdx.app.log(getClass().getSimpleName(), "trackEvent");
             }
 
+            @Override
+            public void share() {
+                Gdx.app.log(getClass().getSimpleName(), "share");
+            }
+
         }), config);
 	}
 }
