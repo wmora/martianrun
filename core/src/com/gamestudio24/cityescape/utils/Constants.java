@@ -82,6 +82,6 @@ public class Constants {
     public static final String FONT_NAME = "roboto_bold.ttf";
 
     public static final String ABOUT_TEXT = "Developed by: @gamestudio24\nPowered by: @libgdx\nGraphics: @kenneywings"
-            + "\nMusic: @incompetech";
+            + "\nMusic: @kmacleod";
 
 }
