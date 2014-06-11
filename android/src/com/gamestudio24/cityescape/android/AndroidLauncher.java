@@ -21,8 +21,6 @@ import com.google.games.basegameutils.GameHelper;
 
 public class AndroidLauncher extends AndroidApplication implements GameHelper.GameHelperListener, GameEventListener {
 
-    private AdView adView;
-
     private static String SAVED_LEADERBOARD_REQUESTED = "SAVED_LEADERBOARD_REQUESTED";
 
     private static final String AD_UNIT_ID = "ca-app-pub-9726805752162406/6658558541";
@@ -30,6 +28,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     private static final String BUGSENSE_API_KEY = "3e9f5c76";
     private GameHelper gameHelper;
 
+    private AdView mAdView;
     private boolean mLeaderboardRequested;
 
     @Override
@@ -54,10 +53,10 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
         layout.addView(gameView);
 
 
-        adView = createAdView();
-        adView.loadAd(createAdRequest());
+        mAdView = createAdView();
+        mAdView.loadAd(createAdRequest());
 
-        layout.addView(adView, getAdParams());
+        layout.addView(mAdView, getAdParams());
 
         setContentView(layout);
 
@@ -144,12 +143,12 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
 
     @Override
     public void displayAd() {
-        adView.setVisibility(View.VISIBLE);
+        mAdView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideAd() {
-        adView.setVisibility(View.GONE);
+        mAdView.setVisibility(View.GONE);
     }
 
     @Override
