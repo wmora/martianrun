@@ -16,6 +16,7 @@ public class AssetsManager {
     private static HashMap<String, Animation> animationsMap = new HashMap<String, Animation>();
     private static TextureAtlas textureAtlas;
     private static BitmapFont smallFont;
+    private static BitmapFont smallestFont;
     private static BitmapFont largeFont;
 
     private AssetsManager() {
@@ -58,6 +59,12 @@ public class AssetsManager {
         animationsMap.put(Constants.FLYING_WIDE_ENEMY_ASSETS_ID, createAnimation(textureAtlas,
                 Constants.FLYING_WIDE_ENEMY_REGION_NAMES));
 
+        // Tutorial
+        texturesMap.put(Constants.TUTORIAL_LEFT_REGION_NAME,
+                textureAtlas.findRegion(Constants.TUTORIAL_LEFT_REGION_NAME));
+        texturesMap.put(Constants.TUTORIAL_RIGHT_REGION_NAME,
+                textureAtlas.findRegion(Constants.TUTORIAL_RIGHT_REGION_NAME));
+
         // Fonts
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(Constants.FONT_NAME));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -67,6 +74,9 @@ public class AssetsManager {
         parameter.size = 72;
         largeFont = generator.generateFont(parameter);
         largeFont.setColor(.21f, .22f, .21f, 1f);
+        parameter.size = 24;
+        smallestFont = generator.generateFont(parameter);
+        smallestFont.setColor(.21f, .22f, .21f, 1f);
         generator.dispose();
 
     }
@@ -102,5 +112,9 @@ public class AssetsManager {
 
     public static BitmapFont getLargeFont() {
         return largeFont;
+    }
+
+    public static BitmapFont getSmallestFont() {
+        return smallestFont;
     }
 }

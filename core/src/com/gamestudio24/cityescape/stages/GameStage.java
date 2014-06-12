@@ -42,6 +42,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private Score score;
     private float totalTimePassed;
+    private boolean tutorialShown;
 
     private Vector3 touchPoint;
 
@@ -197,6 +198,29 @@ public class GameStage extends Stage implements ContactListener {
         Rectangle pauseLabelBounds = new Rectangle(0, getCamera().viewportHeight * 7 / 8, getCamera().viewportWidth,
                 getCamera().viewportHeight / 4);
         addActor(new PausedLabel(pauseLabelBounds));
+    }
+
+    private void setUpTutorial() {
+        if (tutorialShown) {
+            return;
+        }
+        setUpLeftTutorial();
+        setUpRightTutorial();
+        tutorialShown = true;
+    }
+
+    private void setUpLeftTutorial() {
+        float width = getCamera().viewportHeight / 4;
+        float x = getCamera().viewportWidth / 4 - width / 2;
+        Rectangle leftTutorialBounds = new Rectangle(x, getCamera().viewportHeight * 9 / 20, width, width);
+        addActor(new Tutorial(leftTutorialBounds, Constants.TUTORIAL_LEFT_REGION_NAME, Constants.TUTORIAL_LEFT_TEXT));
+    }
+
+    private void setUpRightTutorial() {
+        float width = getCamera().viewportHeight / 4;
+        float x = getCamera().viewportWidth * 3 / 4 - width / 2;
+        Rectangle rightTutorialBounds = new Rectangle(x, getCamera().viewportHeight * 9 / 20, width, width);
+        addActor(new Tutorial(rightTutorialBounds, Constants.TUTORIAL_RIGHT_REGION_NAME, Constants.TUTORIAL_RIGHT_TEXT));
     }
 
     @Override
@@ -402,6 +426,7 @@ public class GameStage extends Stage implements ContactListener {
             setUpStageBase();
             setUpCharacters();
             setUpPause();
+            setUpTutorial();
             onGameResumed();
         }
 

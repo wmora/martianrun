@@ -4,196 +4,210 @@ filter: Linear,Linear
 repeat: none
 about
   rotate: false
-  xy: 252, 2
+  xy: 2, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 alienBeige_dodge
   rotate: false
-  xy: 206, 121
+  xy: 52, 2
   size: 67, 72
   orig: 67, 72
   offset: 0, 0
   index: -1
 alienBeige_hit
   rotate: false
-  xy: 137, 121
+  xy: 121, 2
   size: 67, 92
   orig: 67, 92
   offset: 0, 0
   index: -1
 alienBeige_jump
   rotate: false
-  xy: 69, 121
+  xy: 2, 96
   size: 66, 93
   orig: 66, 93
   offset: 0, 0
   index: -1
 alienBeige_run1
   rotate: false
-  xy: 275, 121
+  xy: 70, 96
   size: 68, 93
   orig: 68, 93
   offset: 0, 0
   index: -1
 alienBeige_run2
   rotate: false
-  xy: 345, 121
+  xy: 140, 96
   size: 70, 96
   orig: 70, 96
   offset: 0, 0
   index: -1
 barnacle_bite1
   rotate: false
-  xy: 2, 62
+  xy: 2, 194
   size: 51, 57
   orig: 51, 57
   offset: 0, 0
   index: -1
 barnacle_bite2
   rotate: false
-  xy: 452, 2
+  xy: 55, 194
   size: 51, 58
   orig: 51, 58
   offset: 0, 0
   index: -1
 bee_fly1
   rotate: false
-  xy: 55, 62
+  xy: 108, 194
   size: 56, 48
   orig: 56, 48
   offset: 0, 0
   index: -1
 bee_fly2
   rotate: false
-  xy: 296, 62
+  xy: 166, 194
   size: 61, 42
   orig: 61, 42
   offset: 0, 0
   index: -1
 close
   rotate: false
-  xy: 102, 2
+  xy: 2, 254
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 fly_fly1
   rotate: false
-  xy: 113, 62
+  xy: 52, 254
   size: 57, 45
   orig: 57, 45
   offset: 0, 0
   index: -1
 fly_fly2
   rotate: false
-  xy: 2, 121
+  xy: 111, 254
   size: 65, 39
   orig: 65, 39
   offset: 0, 0
   index: -1
 ladyBug_walk1
   rotate: false
-  xy: 233, 62
+  xy: 178, 254
   size: 61, 34
   orig: 61, 34
   offset: 0, 0
   index: -1
 ladyBug_walk2
   rotate: false
-  xy: 172, 62
+  xy: 2, 304
   size: 59, 42
   orig: 59, 42
   offset: 0, 0
   index: -1
 leaderboard
   rotate: false
-  xy: 283, 219
+  xy: 2, 348
   size: 201, 201
   orig: 201, 201
   offset: 0, 0
   index: -1
 music_off
   rotate: false
-  xy: 202, 2
+  xy: 205, 348
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 music_on
   rotate: false
-  xy: 152, 2
+  xy: 2, 551
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 52, 2
+  xy: 52, 551
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 play
   rotate: false
-  xy: 2, 2
+  xy: 102, 551
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 play_big
   rotate: false
-  xy: 81, 219
+  xy: 2, 601
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 share
   rotate: false
-  xy: 302, 2
+  xy: 204, 601
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 sound_off
   rotate: false
-  xy: 402, 2
+  xy: 2, 803
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 sound_on
   rotate: false
-  xy: 352, 2
+  xy: 52, 803
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 spider_walk1
   rotate: false
-  xy: 417, 121
+  xy: 102, 803
   size: 72, 51
   orig: 72, 51
   offset: 0, 0
   index: -1
 spider_walk2
   rotate: false
-  xy: 2, 219
+  xy: 176, 803
   size: 77, 53
   orig: 77, 53
   offset: 0, 0
   index: -1
+tutorial_left
+  rotate: false
+  xy: 2, 858
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+tutorial_right
+  rotate: false
+  xy: 124, 858
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
 worm_walk1
   rotate: false
-  xy: 359, 62
+  xy: 2, 980
   size: 63, 23
   orig: 63, 23
   offset: 0, 0
   index: -1
 worm_walk2
   rotate: false
-  xy: 424, 62
+  xy: 67, 980
   size: 63, 23
   orig: 63, 23
   offset: 0, 0

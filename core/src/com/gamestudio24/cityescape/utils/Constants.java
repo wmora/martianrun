@@ -76,6 +76,11 @@ public class Constants {
     public static final String CLOSE_REGION_NAME = "close";
     public static final String SHARE_REGION_NAME = "share";
 
+    public static final String TUTORIAL_LEFT_REGION_NAME = "tutorial_left";
+    public static final String TUTORIAL_RIGHT_REGION_NAME = "tutorial_right";
+    public static final String TUTORIAL_LEFT_TEXT = "\nTap left to dodge";
+    public static final String TUTORIAL_RIGHT_TEXT = "\nTap right to jump";
+
     public static final String RUNNER_JUMPING_SOUND = "jump.wav";
     public static final String RUNNER_HIT_SOUND = "hit.wav";
     public static final String GAME_MUSIC = "fun_in_a_bottle.mp3";
