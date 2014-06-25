@@ -117,4 +117,13 @@ public class AssetsManager {
     public static BitmapFont getSmallestFont() {
         return smallestFont;
     }
+
+    public static void dispose() {
+        textureAtlas.dispose();
+        smallestFont.dispose();
+        smallFont.dispose();
+        largeFont.dispose();
+        texturesMap.clear();
+        animationsMap.clear();
+    }
 }

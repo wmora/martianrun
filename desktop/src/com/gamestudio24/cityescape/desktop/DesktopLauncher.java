@@ -34,6 +34,11 @@ public class DesktopLauncher {
             }
 
             @Override
+            public void displayAchievements() {
+                Gdx.app.log(getClass().getSimpleName(), "displayAchievements");
+            }
+
+            @Override
             public void trackEvent(String category, String action, String label, String value) {
                 Gdx.app.log(getClass().getSimpleName(), "trackEvent");
             }
@@ -41,6 +46,71 @@ public class DesktopLauncher {
             @Override
             public void share() {
                 Gdx.app.log(getClass().getSimpleName(), "share");
+            }
+
+            @Override
+            public void unlockAchievement(String id) {
+
+            }
+
+            @Override
+            public void incrementAchievement(String id, int steps) {
+
+            }
+
+            @Override
+            public String getGettingStartedAchievementId() {
+                return null;
+            }
+
+            @Override
+            public String getLikeARoverAchievementId() {
+                return null;
+            }
+
+            @Override
+            public String getSpiritAchievementId() {
+                return null;
+            }
+
+            @Override
+            public String getCuriosityAchievementId() {
+                return null;
+            }
+
+            @Override
+            public String get5kClubAchievementId() {
+                return null;
+            }
+
+            @Override
+            public String get10kClubAchievementId() {
+                return null;
+            }
+
+            @Override
+            public String get25kClubAchievementId() {
+                return null;
+            }
+
+            @Override
+            public String get50kClubAchievementId() {
+                return null;
+            }
+
+            @Override
+            public String get10JumpStreetAchievementId() {
+                return null;
+            }
+
+            @Override
+            public String get100JumpStreetAchievementId() {
+                return null;
+            }
+
+            @Override
+            public String get500JumpStreetAchievementId() {
+                return null;
             }
 
         }), config);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="achievement_getting_started">CggIpqrhukgQAhAB</string>
+    <string name="achievement_like_a_rover">CggIpqrhukgQAhAC</string>
+    <string name="achievement_spirit">CggIpqrhukgQAhAK</string>
+    <string name="achievement_curiosity">CggIpqrhukgQAhAJ</string>
+    <string name="achievement_5k_club">CggIpqrhukgQAhAE</string>
+    <string name="achievement_10k_club">CggIpqrhukgQAhAL</string>
+    <string name="achievement_25k_club">CggIpqrhukgQAhAM</string>
+    <string name="achievement_50k_club">CggIpqrhukgQAhAN</string>
+    <string name="achievement_10_jump_street">CggIpqrhukgQAhAF</string>
+    <string name="achievement_100_jump_street">CggIpqrhukgQAhAD</string>
+    <string name="achievement_500_jump_street">CggIpqrhukgQAhAO</string>
+    <string name="leaderboard_high_scores">CggIpqrhukgQAhAA</string>
+</resources>

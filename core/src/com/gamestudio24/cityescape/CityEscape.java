@@ -3,6 +3,7 @@ package com.gamestudio24.cityescape;
 import com.badlogic.gdx.Game;
 import com.gamestudio24.cityescape.screens.GameScreen;
 import com.gamestudio24.cityescape.utils.AssetsManager;
+import com.gamestudio24.cityescape.utils.AudioUtils;
 import com.gamestudio24.cityescape.utils.GameEventListener;
 import com.gamestudio24.cityescape.utils.GameManager;
 
@@ -18,4 +19,10 @@ public class CityEscape extends Game {
         setScreen(new GameScreen());
     }
 
+    @Override
+    public void dispose() {
+        super.dispose();
+        AudioUtils.dispose();
+        AssetsManager.dispose();
+    }
 }

@@ -28,15 +28,18 @@ public class Runner extends GameActor {
     private Sound jumpSound;
     private Sound hitSound;
 
+    private int jumpCount;
+
     public Runner(Body body) {
         super(body);
+        jumpCount = 0;
         runningAnimation = AssetsManager.getAnimation(Constants.RUNNER_RUNNING_ASSETS_ID);
         stateTime = 0f;
         jumpingTexture = AssetsManager.getTextureRegion(Constants.RUNNER_JUMPING_ASSETS_ID);
         dodgingTexture = AssetsManager.getTextureRegion(Constants.RUNNER_DODGING_ASSETS_ID);
         hitTexture = AssetsManager.getTextureRegion(Constants.RUNNER_HIT_ASSETS_ID);
-        jumpSound = AudioUtils.getInstance().createSound(Constants.RUNNER_JUMPING_SOUND);
-        hitSound = AudioUtils.getInstance().createSound(Constants.RUNNER_HIT_SOUND);
+        jumpSound = AudioUtils.getInstance().getJumpSound();
+        hitSound = AudioUtils.getInstance().getHitSound();
     }
 
     @Override
@@ -75,6 +78,7 @@ public class Runner extends GameActor {
             body.applyLinearImpulse(getUserData().getJumpingLinearImpulse(), body.getWorldCenter(), true);
             jumping = true;
             AudioUtils.getInstance().playSound(jumpSound);
+            jumpCount++;
         }
 
     }
@@ -122,4 +126,7 @@ public class Runner extends GameActor {
         body.resetMassData();
     }
 
+    public int getJumpCount() {
+        return jumpCount;
+    }
 }

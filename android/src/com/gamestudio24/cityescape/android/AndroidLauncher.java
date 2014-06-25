@@ -23,14 +23,15 @@ import com.google.games.basegameutils.GameHelper;
 public class AndroidLauncher extends AndroidApplication implements GameHelper.GameHelperListener, GameEventListener {
 
     private static String SAVED_LEADERBOARD_REQUESTED = "SAVED_LEADERBOARD_REQUESTED";
+    private static String SAVED_ACHIEVEMENTS_REQUESTED = "SAVED_ACHIEVEMENTS_REQUESTED";
 
     private static final String AD_UNIT_ID = "ca-app-pub-9726805752162406/6658558541";
-    private static final String HIGH_SCORES_LEADERBOARD_ID = "CggIpqrhukgQAhAA";
     private static final String BUGSENSE_API_KEY = "3e9f5c76";
     private GameHelper gameHelper;
 
     private AdView mAdView;
     private boolean mLeaderboardRequested;
+    private boolean mAchievementsRequested;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,12 +91,14 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(SAVED_LEADERBOARD_REQUESTED, mLeaderboardRequested);
+        outState.putBoolean(SAVED_ACHIEVEMENTS_REQUESTED, mAchievementsRequested);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mLeaderboardRequested = savedInstanceState.getBoolean(SAVED_LEADERBOARD_REQUESTED, false);
+        mAchievementsRequested = savedInstanceState.getBoolean(SAVED_ACHIEVEMENTS_REQUESTED, false);
     }
 
     private AdRequest createAdRequest() {
@@ -140,6 +143,11 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
             displayLeaderboard();
             mLeaderboardRequested = false;
         }
+
+        if (mAchievementsRequested) {
+            displayAchievements();
+            mAchievementsRequested = false;
+        }
     }
 
     @Override
@@ -155,7 +163,8 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     @Override
     public void submitScore(int score) {
         if (gameHelper.isSignedIn()) {
-            Games.Leaderboards.submitScore(gameHelper.getApiClient(), HIGH_SCORES_LEADERBOARD_ID, score);
+            Games.Leaderboards.submitScore(gameHelper.getApiClient(), getString(R.string.leaderboard_high_scores),
+                    score);
         } else {
             GameManager.getInstance().saveScore(score);
         }
@@ -165,10 +174,20 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     public void displayLeaderboard() {
         if (gameHelper.isSignedIn()) {
             startActivityForResult(Games.Leaderboards.getLeaderboardIntent(gameHelper.getApiClient(),
-                    HIGH_SCORES_LEADERBOARD_ID), 24);
+                    getString(R.string.leaderboard_high_scores)), 24);
         } else {
             gameHelper.beginUserInitiatedSignIn();
             mLeaderboardRequested = true;
+        }
+    }
+
+    @Override
+    public void displayAchievements() {
+        if (gameHelper.isSignedIn()) {
+            startActivityForResult(Games.Achievements.getAchievementsIntent(gameHelper.getApiClient()), 25);
+        } else {
+            gameHelper.beginUserInitiatedSignIn();
+            mAchievementsRequested = true;
         }
     }
 
@@ -185,6 +204,77 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
         share.setType("text/plain");
         share.putExtra(Intent.EXTRA_TEXT, message);
         startActivity(Intent.createChooser(share, Constants.SHARE_TITLE));
+    }
+
+    @Override
+    public void unlockAchievement(String id) {
+        if (gameHelper.isSignedIn()) {
+            Games.Achievements.unlock(gameHelper.getApiClient(), id);
+            GameManager.getInstance().setAchievementUnlocked(id);
+        }
+    }
+
+    @Override
+    public void incrementAchievement(String id, int steps) {
+        if (gameHelper.isSignedIn()) {
+            Games.Achievements.increment(gameHelper.getApiClient(), id, steps);
+            GameManager.getInstance().incrementAchievementCount(id, steps);
+        }
+    }
+
+    @Override
+    public String getGettingStartedAchievementId() {
+        return getString(R.string.achievement_getting_started);
+    }
+
+    @Override
+    public String getLikeARoverAchievementId() {
+        return getString(R.string.achievement_like_a_rover);
+    }
+
+    @Override
+    public String getSpiritAchievementId() {
+        return getString(R.string.achievement_spirit);
+    }
+
+    @Override
+    public String getCuriosityAchievementId() {
+        return getString(R.string.achievement_curiosity);
+    }
+
+    @Override
+    public String get5kClubAchievementId() {
+        return getString(R.string.achievement_5k_club);
+    }
+
+    @Override
+    public String get10kClubAchievementId() {
+        return getString(R.string.achievement_10k_club);
+    }
+
+    @Override
+    public String get25kClubAchievementId() {
+        return getString(R.string.achievement_25k_club);
+    }
+
+    @Override
+    public String get50kClubAchievementId() {
+        return getString(R.string.achievement_50k_club);
+    }
+
+    @Override
+    public String get10JumpStreetAchievementId() {
+        return getString(R.string.achievement_10_jump_street);
+    }
+
+    @Override
+    public String get100JumpStreetAchievementId() {
+        return getString(R.string.achievement_100_jump_street);
+    }
+
+    @Override
+    public String get500JumpStreetAchievementId() {
+        return getString(R.string.achievement_500_jump_street);
     }
 
 }

@@ -75,6 +75,7 @@ public class Constants {
     public static final String ABOUT_REGION_NAME = "about";
     public static final String CLOSE_REGION_NAME = "close";
     public static final String SHARE_REGION_NAME = "share";
+    public static final String ACHIEVEMENTS_REGION_NAME = "star";
 
     public static final String TUTORIAL_LEFT_REGION_NAME = "tutorial_left";
     public static final String TUTORIAL_RIGHT_REGION_NAME = "tutorial_right";

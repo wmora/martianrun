@@ -39,6 +39,7 @@ public class GameStage extends Stage implements ContactListener {
     private LeaderboardButton leaderboardButton;
     private AboutButton aboutButton;
     private ShareButton shareButton;
+    private AchievementsButton achievementsButton;
 
     private Score score;
     private float totalTimePassed;
@@ -121,6 +122,7 @@ public class GameStage extends Stage implements ContactListener {
         setUpLeaderboard();
         setUpAbout();
         setUpShare();
+        setUpAchievements();
     }
 
     private void setUpStart() {
@@ -149,6 +151,13 @@ public class GameStage extends Stage implements ContactListener {
                 getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
         shareButton = new ShareButton(shareButtonBounds, new GameShareButtonListener());
         addActor(shareButton);
+    }
+
+    private void setUpAchievements() {
+        Rectangle achievementsButtonBounds = new Rectangle(getCamera().viewportWidth * 23 / 25,
+                getCamera().viewportHeight / 2, getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+        achievementsButton = new AchievementsButton(achievementsButtonBounds, new GameAchievementsButtonListener());
+        addActor(achievementsButton);
     }
 
     private void setUpWorld() {
@@ -356,6 +365,8 @@ public class GameStage extends Stage implements ContactListener {
             displayAd();
             GameManager.getInstance().submitScore(score.getScore());
             onGameOver();
+            GameManager.getInstance().addGamePlayed();
+            GameManager.getInstance().addJumpCount(runner.getJumpCount());
         } else if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsGround(b)) ||
                 (BodyUtils.bodyIsGround(a) && BodyUtils.bodyIsRunner(b))) {
             runner.landed();
@@ -466,6 +477,15 @@ public class GameStage extends Stage implements ContactListener {
 
     }
 
+    private class GameAchievementsButtonListener implements AchievementsButton.AchievementsButtonListener {
+
+        @Override
+        public void onAchievements() {
+            GameManager.getInstance().displayAchievements();
+        }
+
+    }
+
     private void onGamePaused() {
         GameManager.getInstance().setGameState(GameState.PAUSED);
     }
@@ -490,9 +510,4 @@ public class GameStage extends Stage implements ContactListener {
         setUpAbout();
     }
 
-    @Override
-    public void dispose() {
-        super.dispose();
-        AudioUtils.getInstance().disposeMusic();
-    }
 }

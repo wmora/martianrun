@@ -9,6 +9,8 @@ public class AudioUtils {
 
     private static AudioUtils ourInstance = new AudioUtils();
     private static Music music;
+    private static Sound jumpSound;
+    private static Sound hitSound;
 
     private static final String MUSIC_ON_PREFERENCE = "music_on";
     private static final String SOUND_ON_PREFERENCE = "sound_on";
@@ -30,7 +32,10 @@ public class AudioUtils {
 
     public void init() {
         music = Gdx.audio.newMusic(Gdx.files.internal(Constants.GAME_MUSIC));
-        music.setLooping(true);AudioUtils.getInstance().playMusic();
+        music.setLooping(true);
+        playMusic();
+        jumpSound = createSound(Constants.RUNNER_JUMPING_SOUND);
+        hitSound = createSound(Constants.RUNNER_HIT_SOUND);
     }
 
     public Sound createSound(String soundFileName) {
@@ -65,8 +70,10 @@ public class AudioUtils {
         preferences.flush();
     }
 
-    public void disposeMusic() {
+    public static void dispose() {
         music.dispose();
+        jumpSound.dispose();
+        hitSound.dispose();
     }
 
     public void pauseMusic() {
@@ -83,4 +90,11 @@ public class AudioUtils {
         return musicOn ? Constants.MUSIC_ON_REGION_NAME : Constants.MUSIC_OFF_REGION_NAME;
     }
 
+    public Sound getJumpSound() {
+        return jumpSound;
+    }
+
+    public Sound getHitSound() {
+        return hitSound;
+    }
 }
