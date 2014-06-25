@@ -130,6 +130,7 @@ public class AndroidLauncher extends AndroidApplication implements GameHelper.Ga
     public void onSignInFailed() {
         // handle sign-in failure (e.g. show Sign In button)
         mLeaderboardRequested = false;
+        mAchievementsRequested = false;
     }
 
     @Override
