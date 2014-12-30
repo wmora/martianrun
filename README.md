@@ -7,7 +7,7 @@ A 2D running game built with [libGDX](http://libgdx.badlogicgames.com).
        src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
 </a>
 
-You can find a tutorial of how this project started here:
+You can find a tutorial on how this project started here:
 
 * [Part 1: Project and World Setup](http://williammora.com/a-running-game-with-libgdx-part-1)
 * [Part 2: Main Character and Controls](http://williammora.com/a-running-game-with-libgdx-part-2)
