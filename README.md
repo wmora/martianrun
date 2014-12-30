@@ -60,8 +60,11 @@ compile:
 
 ## Credits
 Developed by [William Mora](http://williammora.com)
+
 Powered by [libGDX](http://libgdx.badlogicgames.com)
+
 Graphics by [Kenney](http://www.kenney.nl/)
+
 Music by [Kevin MacLeod](http://incompetech.com)
 
 ## License
