@@ -1,13 +1,30 @@
+/*
+ * Copyright (c) 2014. William Mora
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.gamestudio24.cityescape.actors;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gamestudio24.cityescape.box2d.GroundUserData;
+import com.gamestudio24.cityescape.enums.GameState;
+import com.gamestudio24.cityescape.utils.AssetsManager;
 import com.gamestudio24.cityescape.utils.Constants;
+import com.gamestudio24.cityescape.utils.GameManager;
 
 public class Ground extends GameActor {
 
@@ -18,7 +35,7 @@ public class Ground extends GameActor {
 
     public Ground(Body body) {
         super(body);
-        textureRegion = new TextureRegion(new Texture(Gdx.files.internal(Constants.GROUND_IMAGE_PATH)));
+        textureRegion = AssetsManager.getTextureRegion(Constants.GROUND_ASSETS_ID);
         textureRegionBounds1 = new Rectangle(0 - getUserData().getWidth() / 2, 0, getUserData().getWidth(),
                 getUserData().getHeight());
         textureRegionBounds2 = new Rectangle(getUserData().getWidth() / 2, 0, getUserData().getWidth(),
@@ -33,6 +50,11 @@ public class Ground extends GameActor {
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        if (GameManager.getInstance().getGameState() != GameState.RUNNING) {
+            return;
+        }
+
         if (leftBoundsReached(delta)) {
             resetBounds();
         } else {

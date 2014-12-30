@@ -1,1 +1,4 @@
+# This is the file where I place the values used for the game's packaging process
+# You may safely ignore this. Refer to the Setup section in the README file for all missing strings
+# from version control
 services-ids.xml

@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2014. William Mora
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.gamestudio24.cityescape.actors;
 
 import com.badlogic.gdx.Gdx;
@@ -7,7 +23,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gamestudio24.cityescape.box2d.EnemyUserData;
+import com.gamestudio24.cityescape.enums.GameState;
+import com.gamestudio24.cityescape.utils.AssetsManager;
 import com.gamestudio24.cityescape.utils.Constants;
+import com.gamestudio24.cityescape.utils.GameManager;
 
 public class Enemy extends GameActor {
 
@@ -16,13 +35,7 @@ public class Enemy extends GameActor {
 
     public Enemy(Body body) {
         super(body);
-        TextureAtlas textureAtlas = new TextureAtlas(Constants.CHARACTERS_ATLAS_PATH);
-        TextureRegion[] runningFrames = new TextureRegion[getUserData().getTextureRegions().length];
-        for (int i = 0; i < getUserData().getTextureRegions().length; i++) {
-            String path = getUserData().getTextureRegions()[i];
-            runningFrames[i] = textureAtlas.findRegion(path);
-        }
-        animation = new Animation(0.1f, runningFrames);
+        animation = AssetsManager.getAnimation(getUserData().getAnimationAssetId());
         stateTime = 0f;
     }
 
@@ -40,7 +53,11 @@ public class Enemy extends GameActor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        stateTime += Gdx.graphics.getDeltaTime();
+
+        if (GameManager.getInstance().getGameState() != GameState.PAUSED) {
+            stateTime += Gdx.graphics.getDeltaTime();
+        }
+
         batch.draw(animation.getKeyFrame(stateTime, true), (screenRectangle.x - (screenRectangle.width * 0.1f)),
                 screenRectangle.y, screenRectangle.width * 1.2f, screenRectangle.height * 1.1f);
     }
