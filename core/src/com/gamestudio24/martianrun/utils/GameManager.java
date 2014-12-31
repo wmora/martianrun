@@ -21,6 +21,12 @@ import com.badlogic.gdx.Preferences;
 import com.gamestudio24.martianrun.enums.Difficulty;
 import com.gamestudio24.martianrun.enums.GameState;
 
+/**
+ * A utility singleton that holds the current {@link com.gamestudio24.martianrun.enums.Difficulty}
+ * and {@link com.gamestudio24.martianrun.enums.GameState} of the game as well as the
+ * {@link com.gamestudio24.martianrun.utils.GameEventListener} instance responsible for dispatching
+ * all game events for the platform running the game
+ */
 public class GameManager implements GameEventListener {
     private static GameManager ourInstance = new GameManager();
 
@@ -79,6 +85,9 @@ public class GameManager implements GameEventListener {
         gameEventListener.hideAd();
     }
 
+    /**
+     * Submits a score and unlocks a score-based achievement depending on the total
+     */
     @Override
     public void submitScore(int score) {
         gameEventListener.submitScore(score);
