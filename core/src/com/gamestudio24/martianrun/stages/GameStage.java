@@ -82,14 +82,14 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpGameLabel() {
-        Rectangle gameLabelBounds = new Rectangle(0, getCamera().viewportHeight * 7 / 8, getCamera().viewportWidth,
-                getCamera().viewportHeight / 4);
+        Rectangle gameLabelBounds = new Rectangle(0, getCamera().viewportHeight * 7 / 8,
+                getCamera().viewportWidth, getCamera().viewportHeight / 4);
         addActor(new GameLabel(gameLabelBounds));
     }
 
     private void setUpAboutText() {
-        Rectangle gameLabelBounds = new Rectangle(0, getCamera().viewportHeight * 5 / 8, getCamera().viewportWidth,
-                getCamera().viewportHeight / 4);
+        Rectangle gameLabelBounds = new Rectangle(0, getCamera().viewportHeight * 5 / 8,
+                getCamera().viewportWidth, getCamera().viewportHeight / 4);
         addActor(new AboutLabel(gameLabelBounds));
     }
 
@@ -103,29 +103,33 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpSound() {
-        Rectangle soundButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 13 / 20,
-                getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+        Rectangle soundButtonBounds = new Rectangle(getCamera().viewportWidth / 64,
+                getCamera().viewportHeight * 13 / 20, getCamera().viewportHeight / 10,
+                getCamera().viewportHeight / 10);
         soundButton = new SoundButton(soundButtonBounds);
         addActor(soundButton);
     }
 
     private void setUpMusic() {
-        Rectangle musicButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 4 / 5,
-                getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+        Rectangle musicButtonBounds = new Rectangle(getCamera().viewportWidth / 64,
+                getCamera().viewportHeight * 4 / 5, getCamera().viewportHeight / 10,
+                getCamera().viewportHeight / 10);
         musicButton = new MusicButton(musicButtonBounds);
         addActor(musicButton);
     }
 
     private void setUpScore() {
-        Rectangle scoreBounds = new Rectangle(getCamera().viewportWidth * 47 / 64, getCamera().viewportHeight * 57 / 64,
-                getCamera().viewportWidth / 4, getCamera().viewportHeight / 8);
+        Rectangle scoreBounds = new Rectangle(getCamera().viewportWidth * 47 / 64,
+                getCamera().viewportHeight * 57 / 64, getCamera().viewportWidth / 4,
+                getCamera().viewportHeight / 8);
         score = new Score(scoreBounds);
         addActor(score);
     }
 
     private void setUpPause() {
-        Rectangle pauseButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight * 1 / 2,
-                getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+        Rectangle pauseButtonBounds = new Rectangle(getCamera().viewportWidth / 64,
+                getCamera().viewportHeight * 1 / 2, getCamera().viewportHeight / 10,
+                getCamera().viewportHeight / 10);
         pauseButton = new PauseButton(pauseButtonBounds, new GamePauseButtonListener());
         addActor(pauseButton);
     }
@@ -142,37 +146,44 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpStart() {
-        Rectangle startButtonBounds = new Rectangle(getCamera().viewportWidth * 3 / 16, getCamera().viewportHeight / 4,
-                getCamera().viewportWidth / 4, getCamera().viewportWidth / 4);
+        Rectangle startButtonBounds = new Rectangle(getCamera().viewportWidth * 3 / 16,
+                getCamera().viewportHeight / 4, getCamera().viewportWidth / 4,
+                getCamera().viewportWidth / 4);
         startButton = new StartButton(startButtonBounds, new GameStartButtonListener());
         addActor(startButton);
     }
 
     private void setUpLeaderboard() {
         Rectangle leaderboardButtonBounds = new Rectangle(getCamera().viewportWidth * 9 / 16,
-                getCamera().viewportHeight / 4, getCamera().viewportWidth / 4, getCamera().viewportWidth / 4);
-        leaderboardButton = new LeaderboardButton(leaderboardButtonBounds, new GameLeaderboardButtonListener());
+                getCamera().viewportHeight / 4, getCamera().viewportWidth / 4,
+                getCamera().viewportWidth / 4);
+        leaderboardButton = new LeaderboardButton(leaderboardButtonBounds,
+                new GameLeaderboardButtonListener());
         addActor(leaderboardButton);
     }
 
     private void setUpAbout() {
         Rectangle aboutButtonBounds = new Rectangle(getCamera().viewportWidth * 23 / 25,
-                getCamera().viewportHeight * 13 / 20, getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+                getCamera().viewportHeight * 13 / 20, getCamera().viewportHeight / 10,
+                getCamera().viewportHeight / 10);
         aboutButton = new AboutButton(aboutButtonBounds, new GameAboutButtonListener());
         addActor(aboutButton);
     }
 
     private void setUpShare() {
-        Rectangle shareButtonBounds = new Rectangle(getCamera().viewportWidth / 64, getCamera().viewportHeight / 2,
-                getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
+        Rectangle shareButtonBounds = new Rectangle(getCamera().viewportWidth / 64,
+                getCamera().viewportHeight / 2, getCamera().viewportHeight / 10,
+                getCamera().viewportHeight / 10);
         shareButton = new ShareButton(shareButtonBounds, new GameShareButtonListener());
         addActor(shareButton);
     }
 
     private void setUpAchievements() {
         Rectangle achievementsButtonBounds = new Rectangle(getCamera().viewportWidth * 23 / 25,
-                getCamera().viewportHeight / 2, getCamera().viewportHeight / 10, getCamera().viewportHeight / 10);
-        achievementsButton = new AchievementsButton(achievementsButtonBounds, new GameAchievementsButtonListener());
+                getCamera().viewportHeight / 2, getCamera().viewportHeight / 10,
+                getCamera().viewportHeight / 10);
+        achievementsButton = new AchievementsButton(achievementsButtonBounds,
+                new GameAchievementsButtonListener());
         addActor(achievementsButton);
     }
 
@@ -214,14 +225,15 @@ public class GameStage extends Stage implements ContactListener {
 
     private void setUpTouchControlAreas() {
         touchPoint = new Vector3();
-        screenLeftSide = new Rectangle(0, 0, getCamera().viewportWidth / 2, getCamera().viewportHeight);
-        screenRightSide = new Rectangle(getCamera().viewportWidth / 2, 0, getCamera().viewportWidth / 2,
+        screenLeftSide = new Rectangle(0, 0, getCamera().viewportWidth / 2,
                 getCamera().viewportHeight);
+        screenRightSide = new Rectangle(getCamera().viewportWidth / 2, 0,
+                getCamera().viewportWidth / 2, getCamera().viewportHeight);
     }
 
     private void setUpPauseLabel() {
-        Rectangle pauseLabelBounds = new Rectangle(0, getCamera().viewportHeight * 7 / 8, getCamera().viewportWidth,
-                getCamera().viewportHeight / 4);
+        Rectangle pauseLabelBounds = new Rectangle(0, getCamera().viewportHeight * 7 / 8,
+                getCamera().viewportWidth, getCamera().viewportHeight / 4);
         addActor(new PausedLabel(pauseLabelBounds));
     }
 
@@ -237,15 +249,19 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpLeftTutorial() {
         float width = getCamera().viewportHeight / 4;
         float x = getCamera().viewportWidth / 4 - width / 2;
-        Rectangle leftTutorialBounds = new Rectangle(x, getCamera().viewportHeight * 9 / 20, width, width);
-        addActor(new Tutorial(leftTutorialBounds, Constants.TUTORIAL_LEFT_REGION_NAME, Constants.TUTORIAL_LEFT_TEXT));
+        Rectangle leftTutorialBounds = new Rectangle(x, getCamera().viewportHeight * 9 / 20, width,
+                width);
+        addActor(new Tutorial(leftTutorialBounds, Constants.TUTORIAL_LEFT_REGION_NAME,
+                Constants.TUTORIAL_LEFT_TEXT));
     }
 
     private void setUpRightTutorial() {
         float width = getCamera().viewportHeight / 4;
         float x = getCamera().viewportWidth * 3 / 4 - width / 2;
-        Rectangle rightTutorialBounds = new Rectangle(x, getCamera().viewportHeight * 9 / 20, width, width);
-        addActor(new Tutorial(rightTutorialBounds, Constants.TUTORIAL_RIGHT_REGION_NAME, Constants.TUTORIAL_RIGHT_TEXT));
+        Rectangle rightTutorialBounds = new Rectangle(x, getCamera().viewportHeight * 9 / 20, width,
+                width);
+        addActor(new Tutorial(rightTutorialBounds, Constants.TUTORIAL_RIGHT_REGION_NAME,
+                Constants.TUTORIAL_RIGHT_TEXT));
     }
 
     @Override
@@ -289,7 +305,8 @@ public class GameStage extends Stage implements ContactListener {
 
     private void createEnemy() {
         Enemy enemy = new Enemy(WorldUtils.createEnemy(world));
-        enemy.getUserData().setLinearVelocity(GameManager.getInstance().getDifficulty().getEnemyLinearVelocity());
+        enemy.getUserData().setLinearVelocity(
+                GameManager.getInstance().getDifficulty().getEnemyLinearVelocity());
         addActor(enemy);
     }
 
@@ -336,7 +353,8 @@ public class GameStage extends Stage implements ContactListener {
 
         switch (GameManager.getInstance().getGameState()) {
             case OVER:
-                touched = startButton.getBounds().contains(x, y) || leaderboardButton.getBounds().contains(x, y)
+                touched = startButton.getBounds().contains(x, y)
+                        || leaderboardButton.getBounds().contains(x, y)
                         || aboutButton.getBounds().contains(x, y);
                 break;
             case RUNNING:
@@ -345,7 +363,8 @@ public class GameStage extends Stage implements ContactListener {
                 break;
         }
 
-        return touched || soundButton.getBounds().contains(x, y) || musicButton.getBounds().contains(x, y);
+        return touched || soundButton.getBounds().contains(x, y)
+                || musicButton.getBounds().contains(x, y);
     }
 
     private boolean rightSideTouched(float x, float y) {
@@ -459,7 +478,8 @@ public class GameStage extends Stage implements ContactListener {
 
     }
 
-    private class GameLeaderboardButtonListener implements LeaderboardButton.LeaderboardButtonListener {
+    private class GameLeaderboardButtonListener
+            implements LeaderboardButton.LeaderboardButtonListener {
 
         @Override
         public void onLeaderboard() {
@@ -493,7 +513,8 @@ public class GameStage extends Stage implements ContactListener {
 
     }
 
-    private class GameAchievementsButtonListener implements AchievementsButton.AchievementsButtonListener {
+    private class GameAchievementsButtonListener
+            implements AchievementsButton.AchievementsButtonListener {
 
         @Override
         public void onAchievements() {
