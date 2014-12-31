@@ -22,6 +22,9 @@ import java.util.Random;
 
 public class RandomUtils {
 
+    /**
+     * @return a random {@link com.gamestudio24.martianrun.enums.EnemyType}
+     */
     public static EnemyType getRandomEnemyType() {
         RandomEnum<EnemyType> randomEnum = new RandomEnum<EnemyType>(EnemyType.class);
         return randomEnum.random();
@@ -29,9 +32,7 @@ public class RandomUtils {
 
     /**
      * @see <a href="http://stackoverflow.com/a/1973018">Stack Overflow</a>
-     * @param <E>
      */
-
     private static class RandomEnum<E extends Enum> {
 
         private static final Random RND = new Random();
@@ -41,6 +42,9 @@ public class RandomUtils {
             values = token.getEnumConstants();
         }
 
+        /**
+         * @return a random value for the given enum
+         */
         public E random() {
             return values[RND.nextInt(values.length)];
         }
