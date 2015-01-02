@@ -68,7 +68,7 @@ Graphics by [Kenney](http://www.kenney.nl/)
 Music by [Kevin MacLeod](http://incompetech.com)
 
 ## License
-    Copyright 2014 William Mora
+    Copyright 2015 William Mora
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
