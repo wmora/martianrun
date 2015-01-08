@@ -26,7 +26,7 @@ You can find a tutorial on how this project started here:
 You need to add the following string resources to your Android project in order for the module to
 compile:
 
-```
+```xml
 
     <!-- Google Analytics: Replace placeholder ID with your tracking ID -->
     <string name="ga_trackingId">UA-XXXXXXXX-X</string>
